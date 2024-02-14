@@ -47,6 +47,7 @@ echo "8.  Find emails with domain"
 echo "9.  Dig Target"
 
 echo "10. Advanced Recon"
+echo "11. Spider"
 #iske further parts
 echo "99. Bye Bye!!!"
 echo "0.  Change Target"
@@ -704,6 +705,134 @@ read ggl_opt
 	else
 	xterm -e "echo 'Choose correct option 1-58';read abc"& d3_re $target $option
 fi
+elif [ $option == 11 ]
+then
+echo
+echo "Choose an option"
+echo
+echo "1. Specific Target: $target"
+echo "2. Enter the location of List of URLs"
+echo
+read spd_opt
+echo
+
+    if [ $spd_opt == 1 ]
+    then
+    echo '#!/bin/bash' >> tempspider.sh
+
+    echo '# Function to crawl a webpage and extract links' >> tempspider.sh
+    echo 'function crawl_page() {' >> tempspider.sh
+    echo '    local url="$1"' >> tempspider.sh
+    echo '    local depth="$2"' >> tempspider.sh
+    echo '    local indent="$3"' >> tempspider.sh
+
+    echo '    # Download the webpage' >> tempspider.sh
+    echo '    wget -q -O "$depth.html" "$url"' >> tempspider.sh
+
+    echo '    # Extract links from the webpage' >> tempspider.sh
+    echo '    grep -o '\''<a [^>]*href=["'\''"'\''"'\''][^"'\''"'\''"'\'']*["'\''"'\''"'\'']'\'' "$depth.html" | ' >> tempspider.sh
+    echo '    sed -e '\''s/^<a [^>]*href=["'\''"'\''"'\'']//'\'' -e '\''s/["'\''"'\''"'\'']$//'\'' |' >> tempspider.sh 
+    echo '    grep '\''^http'\'' | ' >> tempspider.sh
+    echo '    while read -r link; do' >> tempspider.sh
+    echo '		  echo "$indent$link" >> $sitemap ' >> tempspider.sh
+    echo '        echo "$indent$link"' >> tempspider.sh
+    echo '        if [ "$depth" -lt "$MAX_DEPTH" ]; then' >> tempspider.sh
+    echo '            crawl_page "$link" $((depth + 1)) "$indent  "' >> tempspider.sh
+    echo '        fi' >> tempspider.sh
+    echo '    done' >> tempspider.sh
+    echo '}' >> tempspider.sh
+
+    echo '# Main function' >> tempspider.sh
+    echo 'function main() {' >> tempspider.sh
+    echo '    local start_url="$1"' >> tempspider.sh
+    echo '    MAX_DEPTH=3  # Maximum depth to crawl' >> tempspider.sh
+
+    echo '    # Create sitemap file' >> tempspider.sh
+    echo '    sitemap="sitemap.txt"' >> tempspider.sh
+    echo '    touch "$sitemap"' >> tempspider.sh
+
+    echo '    # Crawl the website' >> tempspider.sh
+    echo '    crawl_page "$start_url" 0 ""' >> tempspider.sh
+
+    echo '    # Remove temporary files' >> tempspider.sh
+    echo '    rm *.html' >> tempspider.sh
+    echo '}' >> tempspider.sh
+
+    echo '# Check if the script is run with a URL argument' >> tempspider.sh
+    echo 'if [ $# -eq 1 ]; then' >> tempspider.sh
+    echo '    main "$1"' >> tempspider.sh
+    echo 'else' >> tempspider.sh
+    echo '    echo "Usage: $0 <URL>"' >> tempspider.sh
+    echo '    exit 1' >> tempspider.sh
+    echo 'fi' >> tempspider.sh
+    echo 'rm -rf tempspider.sh' >> tempspider.sh
+    chmod +x tempspider.sh
+    xterm -e "./tempspider.sh $target; read abc" & d3_re $target $option
+    
+    elif [ $spd_opt == 2 ]
+    then
+    echo
+    echo "Enter file location"
+    echo
+    read $url_list
+    echo '#!/bin/bash' >> tempmultispider.sh
+
+    echo '# Function to crawl a webpage and extract links' >> tempmultispider.sh
+    echo 'function crawl_page() {' >> tempmultispider.sh
+    echo '    local url="$1"' >> tempmultispider.sh
+    echo '    local depth="$2"' >> tempmultispider.sh
+    echo '    local indent="$3"' >> tempmultispider.sh
+    echo '    local hostname="$(echo "$url" | awk -F/ '\''{print $3}'\'')"' >> tempmultispider.sh
+
+    echo '    # Download the webpage' >> tempmultispider.sh
+    echo '    wget -q -O "$depth.html" "$url"' >> tempmultispider.sh
+
+    echo '    # Create sitemap file for this URL' >> tempmultispider.sh
+    echo '    local sitemap="${hostname}_sitemap.txt"' >> tempmultispider.sh
+    echo '    touch "$sitemap"' >> tempmultispider.sh
+
+    echo '    # Extract links from the webpage' >> tempmultispider.sh
+    echo '    grep -o '\''<a [^>]*href=["'\''"'\''"'\''][^"'\''"'\''"'\'']*["'\''"'\''"'\'']'\'' "$depth.html" | ' >> tempmultispider.sh
+    echo '    sed -e '\''s/^<a [^>]*href=["'\''"'\''"'\'']//'\'' -e '\''s/["'\''"'\''"'\'']$//'\'' | ' >> tempmultispider.sh
+    echo '    grep '\''^http'\'' | ' >> tempmultispider.sh
+    echo '    while read -r link; do' >> tempmultispider.sh
+    echo '	      echo "$indent$link"' >> tempmultispider.sh
+    echo '        echo "$indent$link" >> "$sitemap"  # Append the link to the sitemap file' >> tempmultispider.sh
+    echo '        if [ "$depth" -lt "$MAX_DEPTH" ]; then' >> tempmultispider.sh
+    echo '            crawl_page "$link" $((depth + 1)) "$indent  "' >> tempmultispider.sh
+    echo '        fi' >> tempmultispider.sh
+    echo '    done' >> tempmultispider.sh
+    echo '}' >> tempmultispider.sh
+
+    echo '# Main function' >> tempmultispider.sh
+    echo 'function main() {' >> tempmultispider.sh
+    echo '    local input_file="$1"' >> tempmultispider.sh
+    echo '    MAX_DEPTH=3  # Maximum depth to crawl' >> tempmultispider.sh
+
+    echo '    # Crawl each URL in the list' >> tempmultispider.sh
+    echo '    while IFS= read -r url; do' >> tempmultispider.sh
+    echo '        crawl_page "$url" 0 ""' >> tempmultispider.sh
+    echo '    done < "$input_file"' >> tempmultispider.sh
+
+    echo '    # Remove temporary files' >> tempmultispider.sh
+    echo '    rm *.html' >> tempmultispider.sh
+    echo '}' >> tempmultispider.sh
+
+    echo '# Check if the script is run with a file argument' >> tempmultispider.sh
+    echo 'if [ $# -eq 1 ]; then' >> tempmultispider.sh
+    echo '    main "$1"' >> tempmultispider.sh
+    echo 'else' >> tempmultispider.sh
+    echo '    echo "Usage: $0 <URLs_file>"' >> tempmultispider.sh
+    echo '    exit 1' >> tempmultispider.sh
+    echo 'fi' >> tempmultispider.sh
+    echo ' rm -rf tempmultispider.sh' >> tempmultispider.sh
+    chmod +x tempmultispider.sh
+    xterm -e "./tempmultispider.sh $url_list; read abc" & d3_re $target $option
+    
+    else 
+    xterm -e "echo 'Please Choose Correct Option';read abc" & d3_re $target $option
+    fi
+
 elif [ $option == 99 ]
 then
 toilet "See You 
@@ -1362,6 +1491,141 @@ read ggl_opt
 	echo
 	xterm -e "echo 'Choose correct option 1-59'; read abc" & d3_re $target $option
 fi
+
+elif [ $option == 11 ]
+then
+echo
+echo "Choose an option"
+echo
+echo "1. Specific Target: $target"
+echo "2. Enter the location of List of URLs"
+echo "3. <--- GO BACK --->"
+echo
+read spd_opt
+echo
+
+    if [ $spd_opt == 1 ]
+    then
+    echo '#!/bin/bash' >> tempspider.sh
+
+    echo '# Function to crawl a webpage and extract links' >> tempspider.sh
+    echo 'function crawl_page() {' >> tempspider.sh
+    echo '    local url="$1"' >> tempspider.sh
+    echo '    local depth="$2"' >> tempspider.sh
+    echo '    local indent="$3"' >> tempspider.sh
+
+    echo '    # Download the webpage' >> tempspider.sh
+    echo '    wget -q -O "$depth.html" "$url"' >> tempspider.sh
+
+    echo '    # Extract links from the webpage' >> tempspider.sh
+    echo '    grep -o '\''<a [^>]*href=["'\''"'\''"'\''][^"'\''"'\''"'\'']*["'\''"'\''"'\'']'\'' "$depth.html" | ' >> tempspider.sh
+    echo '    sed -e '\''s/^<a [^>]*href=["'\''"'\''"'\'']//'\'' -e '\''s/["'\''"'\''"'\'']$//'\'' |' >> tempspider.sh 
+    echo '    grep '\''^http'\'' | ' >> tempspider.sh
+    echo '    while read -r link; do' >> tempspider.sh
+    echo '		  echo "$indent$link" >> $sitemap ' >> tempspider.sh
+    echo '        echo "$indent$link"' >> tempspider.sh
+    echo '        if [ "$depth" -lt "$MAX_DEPTH" ]; then' >> tempspider.sh
+    echo '            crawl_page "$link" $((depth + 1)) "$indent  "' >> tempspider.sh
+    echo '        fi' >> tempspider.sh
+    echo '    done' >> tempspider.sh
+    echo '}' >> tempspider.sh
+
+    echo '# Main function' >> tempspider.sh
+    echo 'function main() {' >> tempspider.sh
+    echo '    local start_url="$1"' >> tempspider.sh
+    echo '    MAX_DEPTH=3  # Maximum depth to crawl' >> tempspider.sh
+
+    echo '    # Create sitemap file' >> tempspider.sh
+    echo '    sitemap="sitemap.txt"' >> tempspider.sh
+    echo '    touch "$sitemap"' >> tempspider.sh
+
+    echo '    # Crawl the website' >> tempspider.sh
+    echo '    crawl_page "$start_url" 0 ""' >> tempspider.sh
+
+    echo '    # Remove temporary files' >> tempspider.sh
+    echo '    rm *.html' >> tempspider.sh
+    echo '}' >> tempspider.sh
+
+    echo '# Check if the script is run with a URL argument' >> tempspider.sh
+    echo 'if [ $# -eq 1 ]; then' >> tempspider.sh
+    echo '    main "$1"' >> tempspider.sh
+    echo 'else' >> tempspider.sh
+    echo '    echo "Usage: $0 <URL>"' >> tempspider.sh
+    echo '    exit 1' >> tempspider.sh
+    echo 'fi' >> tempspider.sh
+    echo 'rm -rf tempspider.sh' >> tempspider.sh
+    chmod +x tempspider.sh
+    xterm -e "./tempspider.sh $target; read abc" & d3_re $target $option
+    
+    elif [ $spd_opt == 2 ]
+    then
+    echo
+    echo "Enter file location"
+    echo
+    read $url_list
+    echo '#!/bin/bash' >> tempmultispider.sh
+
+    echo '# Function to crawl a webpage and extract links' >> tempmultispider.sh
+    echo 'function crawl_page() {' >> tempmultispider.sh
+    echo '    local url="$1"' >> tempmultispider.sh
+    echo '    local depth="$2"' >> tempmultispider.sh
+    echo '    local indent="$3"' >> tempmultispider.sh
+    echo '    local hostname="$(echo "$url" | awk -F/ '\''{print $3}'\'')"' >> tempmultispider.sh
+
+    echo '    # Download the webpage' >> tempmultispider.sh
+    echo '    wget -q -O "$depth.html" "$url"' >> tempmultispider.sh
+
+    echo '    # Create sitemap file for this URL' >> tempmultispider.sh
+    echo '    local sitemap="${hostname}_sitemap.txt"' >> tempmultispider.sh
+    echo '    touch "$sitemap"' >> tempmultispider.sh
+
+    echo '    # Extract links from the webpage' >> tempmultispider.sh
+    echo '    grep -o '\''<a [^>]*href=["'\''"'\''"'\''][^"'\''"'\''"'\'']*["'\''"'\''"'\'']'\'' "$depth.html" | ' >> tempmultispider.sh
+    echo '    sed -e '\''s/^<a [^>]*href=["'\''"'\''"'\'']//'\'' -e '\''s/["'\''"'\''"'\'']$//'\'' | ' >> tempmultispider.sh
+    echo '    grep '\''^http'\'' | ' >> tempmultispider.sh
+    echo '    while read -r link; do' >> tempmultispider.sh
+    echo '	      echo "$indent$link"' >> tempmultispider.sh
+    echo '        echo "$indent$link" >> "$sitemap"  # Append the link to the sitemap file' >> tempmultispider.sh
+    echo '        if [ "$depth" -lt "$MAX_DEPTH" ]; then' >> tempmultispider.sh
+    echo '            crawl_page "$link" $((depth + 1)) "$indent  "' >> tempmultispider.sh
+    echo '        fi' >> tempmultispider.sh
+    echo '    done' >> tempmultispider.sh
+    echo '}' >> tempmultispider.sh
+
+    echo '# Main function' >> tempmultispider.sh
+    echo 'function main() {' >> tempmultispider.sh
+    echo '    local input_file="$1"' >> tempmultispider.sh
+    echo '    MAX_DEPTH=3  # Maximum depth to crawl' >> tempmultispider.sh
+
+    echo '    # Crawl each URL in the list' >> tempmultispider.sh
+    echo '    while IFS= read -r url; do' >> tempmultispider.sh
+    echo '        crawl_page "$url" 0 ""' >> tempmultispider.sh
+    echo '    done < "$input_file"' >> tempmultispider.sh
+
+    echo '    # Remove temporary files' >> tempmultispider.sh
+    echo '    rm *.html' >> tempmultispider.sh
+    echo '}' >> tempmultispider.sh
+
+    echo '# Check if the script is run with a file argument' >> tempmultispider.sh
+    echo 'if [ $# -eq 1 ]; then' >> tempmultispider.sh
+    echo '    main "$1"' >> tempmultispider.sh
+    echo 'else' >> tempmultispider.sh
+    echo '    echo "Usage: $0 <URLs_file>"' >> tempmultispider.sh
+    echo '    exit 1' >> tempmultispider.sh
+    echo 'fi' >> tempmultispider.sh
+    echo ' rm -rf tempmultispider.sh' >> tempmultispider.sh
+    chmod +x tempmultispider.sh
+    xterm -e "./tempmultispider.sh $url_list; read abc" & d3_re $target $option
+    
+    elif [ $spd_opt == 3 ]
+	then
+	echo
+	D3m0n_4U $target
+    
+    else 
+    xterm -e "echo 'Please Choose Correct Option';read abc" & d3_re $target $option
+    
+fi
 fi
 }
 
@@ -1401,6 +1665,7 @@ echo "8.  Find emails with domain"
 echo "9.  Dig Target"
 
 echo "10. Advanced Recon"
+echo "11. Spider"
 #iske further parts
 #echo "11. Nmap Scan"
 #further parts
@@ -2059,6 +2324,135 @@ read ggl_opt
 	else
 	xterm -e "echo 'Choose correct option 1-58';read abc"& d3_re $target $option
 fi
+
+elif [ $option == 11 ]
+then
+echo
+echo "Choose an option"
+echo
+echo "1. Specific Target: $target"
+echo "2. Enter the location of List of URLs"
+echo
+read spd_opt
+
+    if [ $spd_opt == 1 ]
+    then
+    echo '#!/bin/bash' >> tempspider.sh
+
+    echo '# Function to crawl a webpage and extract links' >> tempspider.sh
+    echo 'function crawl_page() {' >> tempspider.sh
+    echo '    local url="$1"' >> tempspider.sh
+    echo '    local depth="$2"' >> tempspider.sh
+    echo '    local indent="$3"' >> tempspider.sh
+
+    echo '    # Download the webpage' >> tempspider.sh
+    echo '    wget -q -O "$depth.html" "$url"' >> tempspider.sh
+
+    echo '    # Extract links from the webpage' >> tempspider.sh
+    echo '    grep -o '\''<a [^>]*href=["'\''"'\''"'\''][^"'\''"'\''"'\'']*["'\''"'\''"'\'']'\'' "$depth.html" | ' >> tempspider.sh
+    echo '    sed -e '\''s/^<a [^>]*href=["'\''"'\''"'\'']//'\'' -e '\''s/["'\''"'\''"'\'']$//'\'' |' >> tempspider.sh 
+    echo '    grep '\''^http'\'' | ' >> tempspider.sh
+    echo '    while read -r link; do' >> tempspider.sh
+    echo '		  echo "$indent$link" >> $sitemap ' >> tempspider.sh
+    echo '        echo "$indent$link"' >> tempspider.sh
+    echo '        if [ "$depth" -lt "$MAX_DEPTH" ]; then' >> tempspider.sh
+    echo '            crawl_page "$link" $((depth + 1)) "$indent  "' >> tempspider.sh
+    echo '        fi' >> tempspider.sh
+    echo '    done' >> tempspider.sh
+    echo '}' >> tempspider.sh
+
+    echo '# Main function' >> tempspider.sh
+    echo 'function main() {' >> tempspider.sh
+    echo '    local start_url="$1"' >> tempspider.sh
+    echo '    MAX_DEPTH=3  # Maximum depth to crawl' >> tempspider.sh
+
+    echo '    # Create sitemap file' >> tempspider.sh
+    echo '    sitemap="sitemap.txt"' >> tempspider.sh
+    echo '    touch "$sitemap"' >> tempspider.sh
+
+    echo '    # Crawl the website' >> tempspider.sh
+    echo '    crawl_page "$start_url" 0 ""' >> tempspider.sh
+
+    echo '    # Remove temporary files' >> tempspider.sh
+    echo '    rm *.html' >> tempspider.sh
+    echo '}' >> tempspider.sh
+
+    echo '# Check if the script is run with a URL argument' >> tempspider.sh
+    echo 'if [ $# -eq 1 ]; then' >> tempspider.sh
+    echo '    main "$1"' >> tempspider.sh
+    echo 'else' >> tempspider.sh
+    echo '    echo "Usage: $0 <URL>"' >> tempspider.sh
+    echo '    exit 1' >> tempspider.sh
+    echo 'fi' >> tempspider.sh
+    echo 'rm -rf tempspider.sh' >> tempspider.sh
+    chmod +x tempspider.sh
+    xterm -e "./tempspider.sh $target; read abc" & d3_re $target $option
+    
+    elif [ $spd_opt == 2 ]
+    then
+    echo
+    echo "Enter file location"
+    echo
+    read $url_list
+    echo '#!/bin/bash' >> tempmultispider.sh
+
+    echo '# Function to crawl a webpage and extract links' >> tempmultispider.sh
+    echo 'function crawl_page() {' >> tempmultispider.sh
+    echo '    local url="$1"' >> tempmultispider.sh
+    echo '    local depth="$2"' >> tempmultispider.sh
+    echo '    local indent="$3"' >> tempmultispider.sh
+    echo '    local hostname="$(echo "$url" | awk -F/ '\''{print $3}'\'')"' >> tempmultispider.sh
+
+    echo '    # Download the webpage' >> tempmultispider.sh
+    echo '    wget -q -O "$depth.html" "$url"' >> tempmultispider.sh
+
+    echo '    # Create sitemap file for this URL' >> tempmultispider.sh
+    echo '    local sitemap="${hostname}_sitemap.txt"' >> tempmultispider.sh
+    echo '    touch "$sitemap"' >> tempmultispider.sh
+
+    echo '    # Extract links from the webpage' >> tempmultispider.sh
+    echo '    grep -o '\''<a [^>]*href=["'\''"'\''"'\''][^"'\''"'\''"'\'']*["'\''"'\''"'\'']'\'' "$depth.html" | ' >> tempmultispider.sh
+    echo '    sed -e '\''s/^<a [^>]*href=["'\''"'\''"'\'']//'\'' -e '\''s/["'\''"'\''"'\'']$//'\'' | ' >> tempmultispider.sh
+    echo '    grep '\''^http'\'' | ' >> tempmultispider.sh
+    echo '    while read -r link; do' >> tempmultispider.sh
+    echo '	      echo "$indent$link"' >> tempmultispider.sh
+    echo '        echo "$indent$link" >> "$sitemap"  # Append the link to the sitemap file' >> tempmultispider.sh
+    echo '        if [ "$depth" -lt "$MAX_DEPTH" ]; then' >> tempmultispider.sh
+    echo '            crawl_page "$link" $((depth + 1)) "$indent  "' >> tempmultispider.sh
+    echo '        fi' >> tempmultispider.sh
+    echo '    done' >> tempmultispider.sh
+    echo '}' >> tempmultispider.sh
+
+    echo '# Main function' >> tempmultispider.sh
+    echo 'function main() {' >> tempmultispider.sh
+    echo '    local input_file="$1"' >> tempmultispider.sh
+    echo '    MAX_DEPTH=3  # Maximum depth to crawl' >> tempmultispider.sh
+
+    echo '    # Crawl each URL in the list' >> tempmultispider.sh
+    echo '    while IFS= read -r url; do' >> tempmultispider.sh
+    echo '        crawl_page "$url" 0 ""' >> tempmultispider.sh
+    echo '    done < "$input_file"' >> tempmultispider.sh
+
+    echo '    # Remove temporary files' >> tempmultispider.sh
+    echo '    rm *.html' >> tempmultispider.sh
+    echo '}' >> tempmultispider.sh
+
+    echo '# Check if the script is run with a file argument' >> tempmultispider.sh
+    echo 'if [ $# -eq 1 ]; then' >> tempmultispider.sh
+    echo '    main "$1"' >> tempmultispider.sh
+    echo 'else' >> tempmultispider.sh
+    echo '    echo "Usage: $0 <URLs_file>"' >> tempmultispider.sh
+    echo '    exit 1' >> tempmultispider.sh
+    echo 'fi' >> tempmultispider.sh
+    echo ' rm -rf tempmultispider.sh' >> tempmultispider.sh
+    chmod +x tempmultispider.sh
+    xterm -e "./tempmultispider.sh $url_list; read abc" & d3_re $target $option
+    
+    else 
+    xterm -e "echo 'Please Choose Correct Option';read abc" & d3_re $target $option
+    fi
+
+
 elif [ $option == 99 ]
 then
 toilet "See You 
