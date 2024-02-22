@@ -5,6 +5,7 @@
 #################################################
 
 #toilet
+#lolcat
 #sublist3r
 #theHarvester
 #dirb
@@ -15,926 +16,142 @@
 ################################################
 
 
+#Function for next command banner
 
-function D3m0n_4U () {
-
-echo "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-"
-echo "*              Enter Next Command                   *"
-echo "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-"
-echo
-echo
-####### TARGET DEFINED
-target=$1
-
-echo "Now Choose an option"
-
-####### OPTIONS TIME
-
-echo "1.  Ping Target" 
-# iske further 2 part honge
-
-echo "2.  Reverse IP Lookup"
-echo "3.  Traceroute Target"
-echo "4.  NSlookup Target"
-echo "5.  Check for Whois"
-echo "6.  Find Directories"
-#ask directory option
-
-echo "7.  Find SubDomains"
-echo "8.  Find emails with domain"
-# Ask for Dictionary
-
-echo "9.  Dig Target"
-
-echo "10. Advanced Recon"
-echo "11. Spider"
-#iske further parts
-echo "99. Bye Bye!!!"
-echo "0.  Change Target"
-#echo "11. Nmap Scan"
-#further parts
-echo
-echo "Enter Your Option :-" 
-echo
-read option
-echo
-####### OPTION DEFINED
-
-if [ $option == 1 ] 
-then 
-#ye png lie h
-	echo
-	echo "Choose One Option"
-	echo
-	echo "1. normal ping"
-	echo "2. ping with packet size"
-	echo
-	read ping_opt
-	
-			if [ $ping_opt == 1 ]
-		 then
-			xterm -e "ping -c3 $target; read abc"& d3_re $target $option
-		
-		elif [ $ping_opt == 2 ]
-		then
-
-		echo
-			echo "tell packet size"
-	echo		
-	read pack_size
-		xterm -e "ping -c 3 -M do -s $(( $pack_size - 28 )) $target; read abc"& d3_re $target $option
-		else
-			xterm -e "echo 'Choose 1 or 2';read abc"& d3_re $target $option 
-fi
-
-#######yaha ping lie pura ho gya normal and MTU size dekhne lie
-
-elif [ $option == 2 ]
+if [ -z "$1" ]
 then
-xterm -e "curl https://api.hackertarget.com/reverseiplookup/?q=$target; read abc"& D3m0n_4U $target
-echo
-#######yaha point 2 reverse ip domain check
+echo "Please define target : ./vajrastra <Target> "
 
-elif [ $option == 3 ]
-then
-xterm -e "traceroute $target; read abc"& D3m0n_4U $target
+else
 
-####### yaha trace route
-
-elif [ $option == 4 ]
-then 
-xterm -e "nslookup $target; read abc"& D3m0n_4U $target
-
-####### yaha nslookup complete
-
-elif [ $option == 5 ]
-then
-xterm -e "whois $target; read abc"& D3m0n_4U $target
-
-####### whois complete
-
-elif [ $option == 6 ]
-then
-echo
-echo "Do you want to give custom wordlist?"
-echo "0. NO"
-echo "1. YES"
-echo
-read ans
-
-####### yaha wordlist puchi
-
-	echo
-	if [ $ans == 1 ]
-	then
-	echo "Please provide Location"
-	read location
-	xterm -e "dirb https://$target $location; read abc"& d3_re $target $option
-
-	elif [ $ans == 0 ]
-	then
-	xterm -e "dirb https://$target; read abc"& d3_re $target $option
-
-	else
-	xterm -e "echo 'choose 0/1';read abc"& d3_re $target $option
-
-fi
-
-####### dirb completed
-
-elif [ $option == 7 ]
-then
-xterm -e "sublist3r -d $target; read abc"& D3m0n_4U $target
-
-####### Subdomain complete
-
-elif [ $option == 8 ]
-then
-echo
-echo "Choose One option"
-echo
-echo "1. Anubis"
-echo "2. Baidu"
-echo "3. Bing" 
-echo "4. Binaryedge" 
-echo "5. Bingapi" 
-echo "6. Bufferoverun"
-echo "7. Censys"
-echo "8. Certspotter" 
-echo "9. Crtsh" 
-echo "10. Dnsdumpster" 
-echo "11. Duckduckgo" 
-echo "12. Fullhunt" 
-echo "13. Github-code" 
-echo "14. Google" 
-echo "15. Hackertarget" 
-echo "16. Hunter" 
-echo "17. Intelx" 
-echo "18. Linkedin" 
-echo "19. Linkedin_links" 
-echo "20. N45ht" 
-echo "21. Omnisint" 
-echo "22. Otx" 
-echo "23. Pentesttools" 
-echo "24. Projectdiscovery" 
-echo "25. Qwant" 
-echo "26. Rapiddns" 
-echo "27. Rocketreach" 
-echo "28. SecurityTrails" 
-echo "29. Sublist3r" 
-echo "30. Threatcrowd" 
-echo "31. Threatminer" 
-echo "32. Trello" 
-echo "33. Twitter" 
-echo "34. Urlscan" 
-echo "35. Virustotal" 
-echo "36. Yahoo" 
-echo "37. Zoomeye"
-echo "38. Spyse"
-echo "39. All" 
-echo
-echo "Now Select one Option"
-echo
-read harv_opt
-
-	if [ $harv_opt == 1 ]
-	then
-	xterm -e "theHarvester -d $target -b anubis; read abc"& d3_re $target $option
-
-	elif [ $harv_opt == 2 ]
-	then
-	xterm -e "theHarvester -d $target -b baidu; read abc"& d3_re $target $option
-
-        elif [ $harv_opt == 3 ]
-        then
-        xterm -e "theHarvester -d $target -b bing; read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 4 ]
-        then
-        xterm -e "theHarvester -d $target -b binaryedge; read abc" & d3_re $target $option
-
-
-        elif [ $harv_opt == 5 ]
-        then
-        xterm -e "theHarvester -d $target -b bingapi; read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 6 ]
-        then
-        xterm -e "theHarvester -d $target -b bufferoverun; read abc" & d3_re $target $option
-
-
-        elif [ $harv_opt == 7 ]
-        then
-        xterm -e "theHarvester -d $target -b censys;read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 8 ]
-        then
-        xterm -e "theHarvester -d $target -b certspotter; read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 9 ]
-        then
-        xterm -e "theHarvester -d $target -b crtsh;read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 10 ]
-        then
-        xterm -e "theHarvester -d $target -b dnsdumpster; read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 11 ]
-        then
-        xterm -e "theHarvester -d $target -b duckduckgo;read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 12 ]
-        then
-        xterm -e "theHarvester -d $target -b fullhunt; read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 13 ]
-        then
-        xterm -e "theHarvester -d $target -b github-code; read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 14 ]
-        then
-        xterm -e "theHarvester -d $target -b google;read abc" & d3_re $target $option
-
-
-        elif [ $harv_opt == 15 ]
-        then
-        xterm -e "theHarvester -d $target -b hackertarget; read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 16 ]
-        then
-        xterm -e "theHarvester -d $target -b hunter; read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 17 ]
-        then
-        xterm -e "theHarvester -d $target -b intelx;read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 18 ]
-        then
-        xterm -e "theHarvester -d $target -b linkedin; read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 19 ]
-        then
-        xterm -e "theHarvester -d $target -b linkedin_links;read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 20 ]
-        then
-        xterm -e "theHarvester -d $target -b n45ht; read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 21 ]
-        then
-        xterm -e "theHarvester -d $target -b omnisint;read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 22 ]
-        then
-        xterm -e "theHarvester -d $target -b otx;read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 23 ]
-        then
-        xterm -e "theHarvester -d $target -b pentesttools;read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 24 ]
-        then
-        xterm -e "theHarvester -d $target -b projectdiscovery; read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 25 ]
-        then
-        xterm -e "theHarvester -d $target -b owant; read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 26 ]
-        then
-        xterm -e "theHarvester -d $target -b rapiddns;read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 27 ]
-        then
-        xterm -e "theHarvester -d $target -b rocketreach;read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 28 ]
-        then
-        xterm -e "theHarvester -d $target -b securitytrails; read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 29 ]
-        then
-        xterm -e "theHarvester -d $target -b sublist3r; read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 30 ]
-        then
-        xterm -e "theHarvester -d $target -b threatcrowd; read abc"& d3_re $target $option 
-
-
-        elif [ $harv_opt == 31 ]
-        then
-        xterm -e "theHarvester -d $target -b threatminer; read abc"& d3_re $target $option 
-
-
-        elif [ $harv_opt == 32 ]
-        then
-        xterm -e "theHarvester -d $target -b trello; read abc"& d3_re $target $option 
-
-
-        elif [ $harv_opt == 33 ]
-        then
-        xterm -e "theHarvester -d $target -b twitter; read abc"& d3_re $target $option 
-
-
-        elif [ $harv_opt == 34 ]
-        then
-        xterm -e "theHarvester -d $target -b urlscan; read abc"& d3_re $target $option  
-
-
-        elif [ $harv_opt == 35 ]
-        then
-        xterm -e "theHarvester -d $target -b virustotal; read abc"& d3_re $target $option  
-
-
-        elif [ $harv_opt == 36 ]
-        then
-        xterm -e "theHarvester -d $target -b yahoo; read abc"& d3_re $target $option 
-
-
-        elif [ $harv_opt == 37 ]
-        then
-        xterm -e "theHarvester -d $target -b zoomeye; read abc"& d3_re $target $option 
-
-	elif [ $harv_opt == 38 ]
-	then
-	xterm -e "theHarvester -d $target -b spyse; read abc"& d3_re $target $option
-
-	elif [ $harv_opt == 39 ]
-	then
-	xterm -e "theHarvester -d $target -b all; read abc"& d3_re $target $option
-
-	else
-	xterm -e "echo 'Choose Correct option'; read abc"& d3_re $target $option
-fi
-
-####### theHarvester done
-
-elif [ $option == 9 ]
-then
-xterm -e "dig $target;read abc" & D3m0n_4U $target
-
-####### Dig complete
-
-elif [ $option == 10 ]
-then
-echo
-echo "Choose your option :-"
+function nxtcmnd () {
+clear
 echo
 echo
-echo "1. Directory Listings for Target"
-echo "2. Configuration files"
-echo "3. Database Files"
-echo "4. WordPress"
-echo "5. Log Files"
-echo "6. Backup and old files"
-echo "7. Login Pages"
-echo "8. SQL Errors"
-echo "9. Apache Config Files"
-echo "10. Robots.txt File"
-echo "11. DomainEye"
-echo "12. Publically Exposed Documents"
-echo "13. phpinfo()"
-echo "14. Findind Backdoors"
-echo "15. Install / Setup Files"
-echo "16. Open Redirects"
-echo "17. Apache STRUTS RCE"
-echo "18. 3rd Party Exposure"
-echo "19. Check Security Headers"
-echo "20. Git Lab"
-echo "21. Find Pastebin entries"
-echo "22. Employees on LINKEDIN"
-echo "23. htaccess sensitive files"
-echo "24. Find Subdomains"
-echo "25. Find Sub Subdomains"
-echo "26. Find WordPress #2"
-echo "27. Search in Bitbucket and Atlassian"
-echo "28. Passive Total"
-echo "29. Search in Stackoverflow"
-echo "30. Find WordPress [WayBack Machine]"
-echo "31. Search in GITHUB"
-echo "32. Search in OpenBugBounty"
-echo "33. Search in Reddit"
-echo "34. Test CrossDomain"
-echo "35. Check in ThreatCrowd"
-echo "36. .git folder"
-echo "37. YouTube"
-echo "38. Digital Ocean Spaces"
-echo "39. Find .SWF File (Google)"
-echo "40. Find .SWF File (Yandex)"
-echo "41. Search SWF in WayBack"
-echo "42. Search in WayBack #2"
-echo "43. Search in WayBack #3"
-echo "44. Reverse IP Lookup"
-echo "45. Traefik"
-echo "46. Cloud Storage and Buckets"
-echo "47. s3 Buckets"
-echo "48. Sourcecode - Public WWW"
-echo "49. Check in CENSYS [IP4]"
-echo "50. Check in CENSYS [DOMAINS]"
-echo "51. Check in CENSYS [CERTS]"
-echo "52. Search in Shodan"
-echo "53. CVE-2020-0646 SharePoint RCE"
-echo "54. API EndPoints - WSDL"
-echo "55. Github GIST Searches"
-echo "56. Search in CT Logs"
-echo "57. Plaintext Password Leak"
-echo "58. What CMS?"
+echo "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-" | lolcat
+echo "*              Enter Next Command                   *" | lolcat
+echo "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-" | lolcat
 echo
-echo "Enter Your Option :-"
+echo "             Target is: $target" | lolcat
 echo
-read ggl_opt
+choseopt
 
-####### Saare options bta die and input le lia
+}
 
-	if [ $ggl_opt == 1 ]
-	then
-	firefox "https://www.google.com/search?q=site:$target+intitle:index.of" & d3_re $target $option
-	
-	elif [ $ggl_opt == 2 ]
-	then
-	firefox "https://www.google.com/search?q=site:$target%20ext:xml%20|%20ext:conf%20|%20ext:cnf%20|%20ext:reg%20|%20ext:inf%20|%20ext:rdp%20|%20ext:cfg%20|%20ext:txt%20|%20ext:ora%20|%20ext:ini"  & d3_re $target $option
+function pingt () {
 
-	elif [ $ggl_opt == 3 ]
-	then
-	firefox "https://www.google.com/search?q=site:$target%20ext:sql%20|%20ext:dbf%20|%20ext:mdb" & d3_re $target $option
-
-	elif [ $ggl_opt == 4 ]
-	then
-	firefox "https://www.google.com/search?q=site:$target%20inurl:wp-%20|%20inurl:wp-content%20|%20inurl:plugins%20|%20inurl:uploads%20|%20inurl:themes%20|%20inurl:download" & d3_re $target $option
-
-	elif [ $ggl_opt == 5 ]
-	then
-	firefox "https://www.google.com/search?q=site:$target%20ext:log"  & d3_re $target $option
-
-	elif [ $ggl_opt == 6 ]
-	then
-	firefox "https://www.google.com/search?q=site:$target%20ext:bkf%20|%20ext:bkp%20|%20ext:bak%20|%20ext:old%20|%20ext:backup"  & d3_re $target $option
-
-	elif [ $ggl_opt == 7 ]
-	then
-	firefox "https://www.google.com/search?q=site:$target%20inurl:login%20|%20inurl:signin%20|%20intitle:Login%20|%20intitle:%20signin%20|%20inurl:auth" & d3_re $target $option
-
-	elif [ $ggl_opt == 8 ]
-	then
-	firefox "https://www.google.com/search?q=site:$target%20intext:%22sql%20syntax%20near%22%20|%20intext:%22syntax%20error%20has%20occurred%22%20|%20intext:%22incorrect%20syntax%20near%22%20|%20intext:%22unexpected%20end%20of%20SQL%20command%22%20|%20intext:%22Warning:%20mysql_connect()%22%20|%20intext:%22Warning:%20mysql_query()%22%20|%20intext:%22Warning:%20pg_connect()%22" & d3_re $target $option
-
-	elif [ $ggl_opt == 9 ]
-	then
-	firefox "https://www.google.com/search?q=site:$target%20filetype:config%20%22apache%22"  & d3_re $target $option
-
-	elif [ $ggl_opt == 10 ]
-	then 
-	firefox "https://www.google.com/search?q=$target/robots.txt" & d3_re $target $option
-
-	elif [ $ggl_opt == 11 ]
-	then
-	firefox "https://domaineye.com/similar/$target"  & d3_re $target $option
-
-	elif [ $ggl_opt == 12 ]
-	then
-	firefox "https://www.google.com/search?q=site:$target%20ext:doc%20|%20ext:docx%20|%20ext:odt%20|%20ext:pdf%20|%20ext:rtf%20|%20ext:sxw%20|%20ext:psw%20|%20ext:ppt%20|%20ext:pptx%20|%20ext:pps%20|%20ext:csv" & d3_re $target $option
-
-	elif [ $ggl_opt == 13 ]
-	then
-	firefox "https://www.google.com/search?q=site:$target%20ext:php%20intitle:phpinfo%20%22published%20by%20the%20PHP%20Group%22" & d3_re $target $option
-
-	elif [ $ggl_opt == 14 ]
-	then
-	firefox "https://www.google.com/search?q=site:$target%20%20inurl:shell%20|%20inurl:backdoor%20|%20inurl:wso%20|%20inurl:cmd%20|%20shadow%20|%20passwd%20|%20boot.ini%20|%20inurl:backdoor" & d3_re $target $option
-
-	elif [ $ggl_opt == 15 ]
-	then
-	firefox "https://www.google.com/search?q=site:$target%20%20inurl:readme%20|%20inurl:license%20|%20inurl:install%20|%20inurl:setup%20|%20inurl:config" & d3_re $target $option
-
-	elif [ $ggl_opt == 16 ]
-	then
-	firefox "https://www.google.com/search?q=site:$target%20inurl:redir%20|%20inurl:url%20|%20inurl:redirect%20|%20inurl:return%20|%20inurl:src=http%20|%20inurl:r=http" & d3_re $target $option
-
-	elif [ $ggl_opt == 17 ]
-	then
-	firefox "https://www.google.com/search?q=site:$target%20ext:action%20|%20ext:struts%20|%20ext:do" & d3_re $target $option
-
-	elif [ $ggl_opt == 18 ]
-	then
-	firefox "https://www.google.com/search?q=site%3Ahttp%3A%2F%2Fideone.com+|+site%3Ahttp%3A%2F%2Fcodebeautify.org+|+site%3Ahttp%3A%2F%2Fcodeshare.io+|+site%3Ahttp%3A%2F%2Fcodepen.io+|+site%3Ahttp%3A%2F%2Frepl.it+|+site%3Ahttp%3A%2F%2Fjustpaste.it+|+site%3Ahttp%3A%2F%2Fpastebin.com+|+site%3Ahttp%3A%2F%2Fjsfiddle.net+|+site%3Ahttp%3A%2F%2Ftrello.com+|+site%3A*.atlassian.net+|+site%3Abitbucket.org+%22%$target%22" & d3_re $target $option
-
-	elif [ $ggl_opt == 19 ]
-	then
-	firefox "https://securityheaders.com/?q=$target&followRedirects=on" & d3_re $target $option
-
-	elif [ $ggl_opt == 20 ]
-	then
-	firefox "https://www.google.com/search?q=inurl:gitlab%20$target" & d3_re $target $option
-
-	elif [ $ggl_opt == 21 ]
-	then
-	firefox "https://www.google.com/search?q=site:pastebin.com%20$target" & d3_re $target $option
-
-	elif [ $ggl_opt == 22 ]
-	then
-	firefox "https://www.google.com/search?q=site:linkedin.com%20employees%20$target" & d3_re $target $option
-
-	elif [ $ggl_opt == 23 ]
-	then
-	firefox "https://www.google.com/search?q=site:$target%20inurl:%22/phpinfo.php%22%20|%20inurl:%22.htaccess%22" & d3_re $target $option
-	
-	elif [ $ggl_opt == 24 ]
-	then
-	firefox "https://www.google.com/search?q=site:*.$target" & d3_re $target $option
-
-	elif [ $ggl_opt == 25 ]
-	then
-	firefox "https://www.google.com/search?q=site:*.*.$target" & d3_re $target $option
-	
-	elif [ $ggl_opt == 26 ]
-	then
-	firefox "https://www.google.com/search?q=site:$target%20inurl:wp-content%20|%20inurl:wp-includes" & d3_re $target $option
-
-	elif [ $ggl_opt == 27 ]
-	then
-	firefox "https://www.google.com/search?q=site%3Aatlassian.net+|+site%3Abitbucket.org+%22$target%22" & d3_re $target $option
-
-	elif [ $ggl_opt == 28 ]	
-	then
-	firefox "https://community.riskiq.com/search/$target" & d3_re $target $option
-
-	elif [ $ggl_opt == 29 ]
-	then
-	firefox "https://www.google.com/search?q=site:stackoverflow.com%20%22$target%22" & d3_re $target $option
-
-	elif [ $ggl_opt == 30 ]
-	then
-	firefox "http://wwwb-dedup.us.archive.org:8083/cdx/search?url=$target/&matchType=domain&collapse=digest&output=text&fl=original,timestamp&filter=urlkey:.*wp[-].*&limit=1000000&xx=" & d3_re $target $option
-
-	elif [ $ggl_opt == 31 ]
-	then
-	firefox "https://github.com/search?q=%22*.$target%22" & d3_re $target $option
-
-	elif [ $ggl_opt == 32 ]
-	then
-	firefox "https://www.openbugbounty.org/search/?search=$target" & d3_re $target $option
-
-	elif [ $ggl_opt == 33 ]
-	then
-	firefox "https://www.reddit.com/search/?q=$target" & d3_re $target $option
-
-	elif [ $ggl_opt == 34 ]
-	then
-	firefox "https://www.google.com/search?q=$target/crossdomain.xml" & d3_re $target $option
-
-	elif [ $ggl_opt == 35 ]
-	then
-	firefox "https://threatcrowd.org/domain.php?domain=$target" & d3_re $target $option
-
-	elif [ $ggl_opt == 36 ]
-	then
-	firefox "https://www.google.com/search?q=inurl:%22/.git%20%22$target%20-github" & d3_re $target $option
-
-	elif [ $ggl_opt == 37 ]
-	then
-	firefox "https://www.youtube.com/results?search_query=$target" & d3_re $target $option
-
-	elif [ $ggl_opt == 38 ]
-	then
-	firefox "https://www.google.com/search?q=site:digitaloceanspaces.com%20%22$target%22" & d3_re $target $option
-
-	elif [ $ggl_opt == 39 ]
-	then
-	firefox "https://www.google.com/search?q=inurl$target%20ext:swf" & d3_re $target $option
-
-	elif [ $ggl_opt == 40 ]
-	then
-	firefox "https://yandex.com/search/?text=site%3A$target++mime%3Aswf&lr=112509" & d3_re $target $option
-
-	elif [ $ggl_opt == 41 ]
-	then
-	firefox "https://web.archive.org/cdx/search?url=$target/&matchType=domain&collapse=urlkey&output=text&fl=original&filter=urlkey:.*swf&limit=100000" & d3_re $target $option
-
-	elif [ $ggl_opt == 42 ]
-	then
-	firefox "https://web.archive.org/cdx/search?url=$target/&matchType=domain&collapse=urlkey&output=text&fl=original&filter=mimetype:application/x-shockwave-flash&limit=100000" & d3_re $target $option
-
-	elif [ $ggl_opt == 43 ]
-	then
-	firefox "https://web.archive.org/web/*/$target/*" & d3_re $target $option
-
-	elif [ $ggl_opt == 44 ]
-	then
-	firefox "https://viewdns.info/reverseip/?host=$target&t=1" & d3_re $target $option
-
-	elif [ $ggl_opt == 45 ]
-	then
-	firefox "https://www.google.com/search?q=intitle:traefik+inurl:8080/dashboard%22$target%22" & d3_re $target $option
-
-	elif [ $ggl_opt == 46 ]
-	then
-	firefox "https://cse.google.com/cse?cx=002972716746423218710:veac6ui3rio#gsc.tab=0&gsc.q=$target" & d3_re $target $option
-
-	elif [ $ggl_opt == 47 ]
-	then
-	firefox "https://www.google.com/search?q=site:.s3.amazonaws.com%20%22$target%22" & d3_re $target $option
-
-	elif [ $ggl_opt == 48 ]
-	then
-	firefox "https://publicwww.com/websites/%22$target%22/" & d3_re $target $option
-
-	elif [ $ggl_opt == 49 ]
-	then
-	firefox "https://censys.io/ipv4?q=$target" & d3_re $target $option
-
-	elif [ $ggl_opt == 50 ]	
-	then
-	firefox "https://censys.io/domain?q=$target" & d3_re $target $option
-
-	elif [ $ggl_opt == 51 ]
-	then
-	firefox "https://censys.io/certificates?q=$target" & d3_re $target $option
-
-	elif [ $ggl_opt == 52 ]
-	then
-	firefox "https://www.shodan.io/search?query=$target" & d3_re $target $option
-
-	elif [ $ggl_opt == 53 ]
-	then
-	firefox "https://www.google.com/search?q=.sharepoint.com/_vti_bin/webpartpages/asmx%20-docs%20-msdn%20-mdsec%20site:$target" & d3_re $target $option
-
-	elif [ $ggl_opt == 54 ]
-	then
-	firefox "https://www.google.com/search?q=site:$target%20filetype:wsdl%20|%20filetype:WSDL%20|%20ext:svc%20|%20inurl:wsdl%20|%20Filetype:%20?wsdl%20|%20inurl:asmx?wsdl%20|%20inurl:jws?wsdl%20|%20intitle:_vti_bin/sites.asmx?wsdl%20|%20inurl:_vti_bin/sites.asmx?wsdl" & d3_re $target $option
-
-	elif [ $ggl_opt == 55 ]
-	then
-	firefox "https://gist.github.com/search?q=*.%22$target%22" & d3_re $target $option
-
-	elif [ $ggl_opt == 56 ]
-	then
-	firefox "https://crt.sh/?q=$target" & d3_re $target $option
-
-	elif [ $ggl_opt == 57 ]
-	then
-	firefox "https://www.google.com/search?q=site:throwbin.io%20$target" & d3_re $target $option
-	
-	elif [ $ggl_opt == 58 ]
-	then
-	firefox "https://whatcms.org/?s=$target" & d3_re $target $option
-
-	else
-	xterm -e "echo 'Choose correct option 1-58';read abc"& d3_re $target $option
-fi
-elif [ $option == 11 ]
-then
-echo
-echo "Choose an option"
-echo
-echo "1. Specific Target: $target"
-echo "2. Enter the location of List of URLs"
-echo
-read spd_opt
-echo
-
-    if [ $spd_opt == 1 ]
-    then
-    echo '#!/bin/bash' >> tempspider.sh
-
-    echo '# Function to crawl a webpage and extract links' >> tempspider.sh
-    echo 'function crawl_page() {' >> tempspider.sh
-    echo '    local url="$1"' >> tempspider.sh
-    echo '    local depth="$2"' >> tempspider.sh
-    echo '    local indent="$3"' >> tempspider.sh
-
-    echo '    # Download the webpage' >> tempspider.sh
-    echo '    wget -q -O "$depth.html" "$url"' >> tempspider.sh
-
-    echo '    # Extract links from the webpage' >> tempspider.sh
-    echo '    grep -o '\''<a [^>]*href=["'\''"'\''"'\''][^"'\''"'\''"'\'']*["'\''"'\''"'\'']'\'' "$depth.html" | ' >> tempspider.sh
-    echo '    sed -e '\''s/^<a [^>]*href=["'\''"'\''"'\'']//'\'' -e '\''s/["'\''"'\''"'\'']$//'\'' |' >> tempspider.sh 
-    echo '    grep '\''^http'\'' | ' >> tempspider.sh
-    echo '    while read -r link; do' >> tempspider.sh
-    echo '		  echo "$indent$link" >> $sitemap ' >> tempspider.sh
-    echo '        echo "$indent$link"' >> tempspider.sh
-    echo '        if [ "$depth" -lt "$MAX_DEPTH" ]; then' >> tempspider.sh
-    echo '            crawl_page "$link" $((depth + 1)) "$indent  "' >> tempspider.sh
-    echo '        fi' >> tempspider.sh
-    echo '    done' >> tempspider.sh
-    echo '}' >> tempspider.sh
-
-    echo '# Main function' >> tempspider.sh
-    echo 'function main() {' >> tempspider.sh
-    echo '    local start_url="$1"' >> tempspider.sh
-    echo '    MAX_DEPTH=3  # Maximum depth to crawl' >> tempspider.sh
-
-    echo '    # Create sitemap file' >> tempspider.sh
-    echo '    sitemap="sitemap.txt"' >> tempspider.sh
-    echo '    touch "$sitemap"' >> tempspider.sh
-
-    echo '    # Crawl the website' >> tempspider.sh
-    echo '    crawl_page "$start_url" 0 ""' >> tempspider.sh
-
-    echo '    # Remove temporary files' >> tempspider.sh
-    echo '    rm *.html' >> tempspider.sh
-    echo '}' >> tempspider.sh
-
-    echo '# Check if the script is run with a URL argument' >> tempspider.sh
-    echo 'if [ $# -eq 1 ]; then' >> tempspider.sh
-    echo '    main "$1"' >> tempspider.sh
-    echo 'else' >> tempspider.sh
-    echo '    echo "Usage: $0 <URL>"' >> tempspider.sh
-    echo '    exit 1' >> tempspider.sh
-    echo 'fi' >> tempspider.sh
-    echo 'rm -rf tempspider.sh' >> tempspider.sh
-    chmod +x tempspider.sh
-    xterm -e "./tempspider.sh $target; read abc" & d3_re $target $option
-    
-    elif [ $spd_opt == 2 ]
-    then
     echo
-    echo "Enter file location"
+    echo "Choose One Option"
     echo
-    read $url_list
-    echo '#!/bin/bash' >> tempmultispider.sh
+    echo "1. normal ping"
+    echo "2. ping with packet size"
+    echo "0. <----Go Back---->"
+    echo
+    read ping_opt
 
-    echo '# Function to crawl a webpage and extract links' >> tempmultispider.sh
-    echo 'function crawl_page() {' >> tempmultispider.sh
-    echo '    local url="$1"' >> tempmultispider.sh
-    echo '    local depth="$2"' >> tempmultispider.sh
-    echo '    local indent="$3"' >> tempmultispider.sh
-    echo '    local hostname="$(echo "$url" | awk -F/ '\''{print $3}'\'')"' >> tempmultispider.sh
+            if [ $ping_opt == 1 ]
+         then
+            xterm -e "ping -c3 $target; read abc" & nxtcmnd
 
-    echo '    # Download the webpage' >> tempmultispider.sh
-    echo '    wget -q -O "$depth.html" "$url"' >> tempmultispider.sh
+        elif [ $ping_opt == 2 ]
+        then
 
-    echo '    # Create sitemap file for this URL' >> tempmultispider.sh
-    echo '    local sitemap="${hostname}_sitemap.txt"' >> tempmultispider.sh
-    echo '    touch "$sitemap"' >> tempmultispider.sh
-
-    echo '    # Extract links from the webpage' >> tempmultispider.sh
-    echo '    grep -o '\''<a [^>]*href=["'\''"'\''"'\''][^"'\''"'\''"'\'']*["'\''"'\''"'\'']'\'' "$depth.html" | ' >> tempmultispider.sh
-    echo '    sed -e '\''s/^<a [^>]*href=["'\''"'\''"'\'']//'\'' -e '\''s/["'\''"'\''"'\'']$//'\'' | ' >> tempmultispider.sh
-    echo '    grep '\''^http'\'' | ' >> tempmultispider.sh
-    echo '    while read -r link; do' >> tempmultispider.sh
-    echo '	      echo "$indent$link"' >> tempmultispider.sh
-    echo '        echo "$indent$link" >> "$sitemap"  # Append the link to the sitemap file' >> tempmultispider.sh
-    echo '        if [ "$depth" -lt "$MAX_DEPTH" ]; then' >> tempmultispider.sh
-    echo '            crawl_page "$link" $((depth + 1)) "$indent  "' >> tempmultispider.sh
-    echo '        fi' >> tempmultispider.sh
-    echo '    done' >> tempmultispider.sh
-    echo '}' >> tempmultispider.sh
-
-    echo '# Main function' >> tempmultispider.sh
-    echo 'function main() {' >> tempmultispider.sh
-    echo '    local input_file="$1"' >> tempmultispider.sh
-    echo '    MAX_DEPTH=3  # Maximum depth to crawl' >> tempmultispider.sh
-
-    echo '    # Crawl each URL in the list' >> tempmultispider.sh
-    echo '    while IFS= read -r url; do' >> tempmultispider.sh
-    echo '        crawl_page "$url" 0 ""' >> tempmultispider.sh
-    echo '    done < "$input_file"' >> tempmultispider.sh
-
-    echo '    # Remove temporary files' >> tempmultispider.sh
-    echo '    rm *.html' >> tempmultispider.sh
-    echo '}' >> tempmultispider.sh
-
-    echo '# Check if the script is run with a file argument' >> tempmultispider.sh
-    echo 'if [ $# -eq 1 ]; then' >> tempmultispider.sh
-    echo '    main "$1"' >> tempmultispider.sh
-    echo 'else' >> tempmultispider.sh
-    echo '    echo "Usage: $0 <URLs_file>"' >> tempmultispider.sh
-    echo '    exit 1' >> tempmultispider.sh
-    echo 'fi' >> tempmultispider.sh
-    echo ' rm -rf tempmultispider.sh' >> tempmultispider.sh
-    chmod +x tempmultispider.sh
-    xterm -e "./tempmultispider.sh $url_list; read abc" & d3_re $target $option
-    
-    else 
-    xterm -e "echo 'Please Choose Correct Option';read abc" & d3_re $target $option
-    fi
-
-elif [ $option == 99 ]
-then
-toilet "See You 
-Again Soon"|lolcat & sleep 2;clear 
-
-elif [ $option == 0 ]
-then
-echo "Enter New Target"
-echo
-read target
-echo
-echo "New Target is : $target"
-echo
-D3m0n_4U $target
-
-else 
-xterm -e "echo 'Please Choose Correct Option';read abc" & D3m0n_4U $target
+        echo
+            echo "tell packet size"
+    echo
+    read pack_size
+        xterm -e "ping -c 3 -M do -s $(( $pack_size - 28 )) $target; read abc" & nxtcmnd
+        
+        elif [ $ping_opt == 0 ]
+        then
+        option="999"
+        nxtcmnd
+        
+        else
+            xterm -e "echo 'Choose 0-2';read abc" & nxtcmnd
 fi
 
 }
 
-function d3_re () {
+function revip () {
 
-echo 
-####### TARGET DEFINED
-echo "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-"
-echo "*              Enter Next Command                   *"
-echo "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-"
-target=$1
-option=$2
+option="999"
+xterm -e "curl https://api.hackertarget.com/reverseiplookup/?q=$target; read abc" & nxtcmnd
 
-if [ $option == 1 ] 
-then 
-#ye png lie h
-	echo
-	echo "Choose One Option"
-	echo
-	echo "1. normal ping"
-	echo "2. ping with packet size"
-	echo "3. <--- GO BACK --->"
-	echo
-	read ping_opt
+}
 
-			if [ $ping_opt == 1 ]
-		 then
-			xterm -e "ping -c3 $target; read abc"& d3_re $target $option
+function tracert () {
 
-		elif [ $ping_opt == 2 ]
-		then
+option="999"
+xterm -e "traceroute $target; read abc"& nxtcmnd
 
-		echo
-			echo "tell packet size"
-	echo
-	read pack_size
-		xterm -e "ping -c 3 -M do -s $(( $pack_size - 28 )) $target; read abc"& d3_re $target $option
-	elif [ $ping_opt == 3 ]
-	then
-	echo
-	D3m0n_4U $target
+}
 
-	else
-			xterm -e "echo 'Choose 1 or 2';read abc"& d3_re $target $option 
-fi
+function nslkp () {
 
-elif [ $option == 6 ]
-then
+option="999"
+xterm -e "nslookup $target; read abc"& nxtcmnd
+
+}
+
+function whois () {
+
+option="999"
+xterm -e "whois $target; read abc"& nxtcmnd
+
+}
+
+function drtfnd () {
 echo
 echo "Do you want to give custom wordlist?"
-echo "0. NO"
-echo "1. YES"
-echo "3. <--- GO BACK -->"
+echo "1. NO"
+echo "2. YES"
+echo "0. <----Go Back---->"
 echo
 read ans
 
 ####### yaha wordlist puchi
 
-	if [ $ans == 1 ]
-	then
-	echo
-	echo "Please provide Location"
-	read location
-	xterm -e "dirb http://$target $location; read abc" & d3_re $target $option
+echo
+    
+if [ -z "$ans" ]
+    then
+    nxtcmnd
+    
+    else
+    
+    if [ $ans == 2 ]
+        then
+        echo "Please provide Location"
+        read location
+        xterm -e "dirb https://$target $location; read abc"& nxtcmnd
+    
+    elif [ $ans == 1 ]
+        then
+        xterm -e "dirb https://$target; read abc"& nxtcmnd
+    
+    elif [ $ans == 0 ]
+       then
+       option="999"
+       nxtcmnd
 
-	elif [ $ans == 0 ]
-	then
-	xterm -e "dirb http://$target; read abc"& d3_re $target $option
+    else
+        xterm -e "echo 'choose 0-2';read abc"& nxtcmnd
 
-	elif [ $ans == 3 ]
-	then
-	echo
-	D3m0n_4U $target
-
-	else
-	echo
-	xterm -e "echo 'Choose Correct Option';read abc"& d3_re $target $option
-
+    fi
 fi
 
-elif [ $option == 8 ]
-then
-echo
-echo "Choose One option"
+}
+
+function subdrt () {
+
+option="999"
+xterm -e "sublist3r -d $target; read abc"& nxtcmnd
+
+}
+
+function email () {
+
 echo
 echo "1. Anubis"
 echo "2. Baidu"
@@ -975,211 +192,223 @@ echo "36. Yahoo"
 echo "37. Zoomeye"
 echo "38. Spyse"
 echo "39. All"
-echo "40. <--- GO BACK --->"
+echo "0. <----Go Back---->"
 echo
 echo "Now Select one Option"
 echo
 read harv_opt
 
-	if [ $harv_opt == 1 ]
-	then
-	xterm -e "theHarvester -d $target -b anubis; read abc"& d3_re $target $option
+ if [ -z "$harv_opt" ]
+ then
+ nxtcmnd 
+ 
+ else
+ 
+ if [ $harv_opt == 1 ]
+    then
+    xterm -e "theHarvester -d $target -b anubis; read abc"& nxtcmnd
 
-	elif [ $harv_opt == 2 ]
-	then
-	xterm -e "theHarvester -d $target -b baidu; read abc"& d3_re $target $option
+    elif [ $harv_opt == 2 ]
+    then
+    xterm -e "theHarvester -d $target -b baidu; read abc"& nxtcmnd
 
         elif [ $harv_opt == 3 ]
         then
-        xterm -e "theHarvester -d $target -b bing; read abc"& d3_re $target $option
+        xterm -e "theHarvester -d $target -b bing; read abc"& nxtcmnd
 
-	 elif [ $harv_opt == 4 ]
+
+        elif [ $harv_opt == 4 ]
         then
-        xterm -e "theHarvester -d $target -b binaryedge; read abc" & d3_re $target $option
+        xterm -e "theHarvester -d $target -b binaryedge; read abc" & nxtcmnd
+
 
         elif [ $harv_opt == 5 ]
         then
-        xterm -e "theHarvester -d $target -b bingapi; read abc"& d3_re $target $option
+        xterm -e "theHarvester -d $target -b bingapi; read abc"& nxtcmnd
 
 
         elif [ $harv_opt == 6 ]
         then
-        xterm -e "theHarvester -d $target -b bufferoverun; read abc" & d3_re $target $option
+        xterm -e "theHarvester -d $target -b bufferoverun; read abc" & nxtcmnd
 
 
         elif [ $harv_opt == 7 ]
         then
-        xterm -e "theHarvester -d $target -b censys;read abc"& d3_re $target $option
-
-
+        xterm -e "theHarvester -d $target -b censys;read abc"& nxtcmnd
+        
         elif [ $harv_opt == 8 ]
         then
-        xterm -e "theHarvester -d $target -b certspotter; read abc"& d3_re $target $option
+        xterm -e "theHarvester -d $target -b certspotter; read abc"& nxtcmnd
 
 
         elif [ $harv_opt == 9 ]
         then
-        xterm -e "theHarvester -d $target -b crtsh;read abc"& d3_re $target $option
+        xterm -e "theHarvester -d $target -b crtsh;read abc"& nxtcmnd
 
 
         elif [ $harv_opt == 10 ]
         then
-        xterm -e "theHarvester -d $target -b dnsdumpster; read abc"& d3_re $target $option
+        xterm -e "theHarvester -d $target -b dnsdumpster; read abc"& nxtcmnd
 
 
         elif [ $harv_opt == 11 ]
         then
-        xterm -e "theHarvester -d $target -b duckduckgo;read abc"& d3_re $target $option
+        xterm -e "theHarvester -d $target -b duckduckgo;read abc"& nxtcmnd
 
 
         elif [ $harv_opt == 12 ]
         then
-        xterm -e "theHarvester -d $target -b fullhunt; read abc"& d3_re $target $option
+        xterm -e "theHarvester -d $target -b fullhunt; read abc"& nxtcmnd
 
 
         elif [ $harv_opt == 13 ]
         then
-        xterm -e "theHarvester -d $target -b github-code; read abc"& d3_re $target $option
+        xterm -e "theHarvester -d $target -b github-code; read abc"& nxtcmnd
 
 
         elif [ $harv_opt == 14 ]
         then
-        xterm -e "theHarvester -d $target -b google;read abc" & d3_re $target $option
-
-
+        xterm -e "theHarvester -d $target -b google;read abc" & nxtcmnd
+        
         elif [ $harv_opt == 15 ]
         then
-        xterm -e "theHarvester -d $target -b hackertarget; read abc"& d3_re $target $option
+        xterm -e "theHarvester -d $target -b hackertarget; read abc"& nxtcmnd
 
 
         elif [ $harv_opt == 16 ]
         then
-        xterm -e "theHarvester -d $target -b hunter; read abc"& d3_re $target $option
+        xterm -e "theHarvester -d $target -b hunter; read abc"& nxtcmnd
 
 
         elif [ $harv_opt == 17 ]
         then
-        xterm -e "theHarvester -d $target -b intelx;read abc"& d3_re $target $option
+        xterm -e "theHarvester -d $target -b intelx;read abc"& nxtcmnd
 
 
         elif [ $harv_opt == 18 ]
         then
-        xterm -e "theHarvester -d $target -b linkedin; read abc"& d3_re $target $option
+        xterm -e "theHarvester -d $target -b linkedin; read abc"& nxtcmnd
 
 
         elif [ $harv_opt == 19 ]
         then
-        xterm -e "theHarvester -d $target -b linkedin_links;read abc"& d3_re $target $option
+        xterm -e "theHarvester -d $target -b linkedin_links;read abc"& nxtcmnd
 
 
         elif [ $harv_opt == 20 ]
         then
-        xterm -e "theHarvester -d $target -b n45ht; read abc"& d3_re $target $option
+        xterm -e "theHarvester -d $target -b n45ht; read abc"& nxtcmnd
 
 
         elif [ $harv_opt == 21 ]
         then
-        xterm -e "theHarvester -d $target -b omnisint;read abc"& d3_re $target $option
-
-
+        xterm -e "theHarvester -d $target -b omnisint;read abc"& nxtcmnd
+        
         elif [ $harv_opt == 22 ]
         then
-        xterm -e "theHarvester -d $target -b otx;read abc"& d3_re $target $option
+        xterm -e "theHarvester -d $target -b otx;read abc"& nxtcmnd
 
 
         elif [ $harv_opt == 23 ]
         then
-        xterm -e "theHarvester -d $target -b pentesttools;read abc"& d3_re $target $option
+        xterm -e "theHarvester -d $target -b pentesttools;read abc"& nxtcmnd
 
 
         elif [ $harv_opt == 24 ]
         then
-        xterm -e "theHarvester -d $target -b projectdiscovery; read abc"& d3_re $target $option
+        xterm -e "theHarvester -d $target -b projectdiscovery; read abc"& nxtcmnd
 
 
         elif [ $harv_opt == 25 ]
         then
-        xterm -e "theHarvester -d $target -b owant; read abc"& d3_re $target $option
+        xterm -e "theHarvester -d $target -b owant; read abc"& nxtcmnd
 
 
         elif [ $harv_opt == 26 ]
         then
-        xterm -e "theHarvester -d $target -b rapiddns;read abc"& d3_re $target $option
+        xterm -e "theHarvester -d $target -b rapiddns;read abc"& nxtcmnd
 
 
         elif [ $harv_opt == 27 ]
         then
-        xterm -e "theHarvester -d $target -b rocketreach;read abc"& d3_re $target $option
+        xterm -e "theHarvester -d $target -b rocketreach;read abc"& nxtcmnd
 
 
         elif [ $harv_opt == 28 ]
         then
-        xterm -e "theHarvester -d $target -b securitytrails; read abc"& d3_re $target $option
-
-
+        xterm -e "theHarvester -d $target -b securitytrails; read abc"& nxtcmnd
+        
         elif [ $harv_opt == 29 ]
         then
-        xterm -e "theHarvester -d $target -b sublist3r; read abc"& d3_re $target $option
+        xterm -e "theHarvester -d $target -b sublist3r; read abc"& nxtcmnd
 
 
         elif [ $harv_opt == 30 ]
         then
-        xterm -e "theHarvester -d $target -b threatcrowd; read abc"& d3_re $target $option
+        xterm -e "theHarvester -d $target -b threatcrowd; read abc"& nxtcmnd
 
 
         elif [ $harv_opt == 31 ]
         then
-        xterm -e "theHarvester -d $target -b threatminer; read abc"& d3_re $target $option
+        xterm -e "theHarvester -d $target -b threatminer; read abc"& nxtcmnd
 
 
         elif [ $harv_opt == 32 ]
         then
-        xterm -e "theHarvester -d $target -b trello; read abc"& d3_re $target $option
+        xterm -e "theHarvester -d $target -b trello; read abc"& nxtcmnd
 
 
         elif [ $harv_opt == 33 ]
         then
-        xterm -e "theHarvester -d $target -b twitter; read abc"& d3_re $target $option
+        xterm -e "theHarvester -d $target -b twitter; read abc"& nxtcmnd
 
 
         elif [ $harv_opt == 34 ]
         then
-        xterm -e "theHarvester -d $target -b urlscan; read abc"& d3_re $target $option
+        xterm -e "theHarvester -d $target -b urlscan; read abc"& nxtcmnd
 
 
         elif [ $harv_opt == 35 ]
         then
-        xterm -e "theHarvester -d $target -b virustotal; read abc"& d3_re $target $option
-
+        xterm -e "theHarvester -d $target -b virustotal; read abc"& nxtcmnd
 
         elif [ $harv_opt == 36 ]
         then
-        xterm -e "theHarvester -d $target -b yahoo; read abc"& d3_re $target $optio
+        xterm -e "theHarvester -d $target -b yahoo; read abc"& nxtcmnd
 
 
         elif [ $harv_opt == 37 ]
         then
-        xterm -e "theHarvester -d $target -b zoomeye; read abc"& d3_re $target $option
+        xterm -e "theHarvester -d $target -b zoomeye; read abc"& nxtcmnd
 
-	elif [ $harv_opt == 38 ]
-	then
-	xterm -e "theHarvester -d $target -b spyse; read abc"& d3_re $target $option
+    elif [ $harv_opt == 38 ]
+    then
+    xterm -e "theHarvester -d $target -b spyse; read abc"& nxtcmnd
 
-	elif [ $harv_opt == 39 ]
-	then
-	xterm -e "theHarvester -d $target -b all; read abc"& d3_re $target $option
+    elif [ $harv_opt == 39 ]
+    then
+    xterm -e "theHarvester -d $target -b all; read abc"& nxtcmnd
+    
+    elif [ $harv_opt == 0 ]
+    then
+    option="999"
+    nxtcmnd
 
-	elif [ $harv_opt == 40 ]
-	then
-	echo
-	D3m0n_4U $target
-
-	else
-	xterm -e "echo 'Choose Correct option'; read abc"& d3_re $target $option
+    else
+    xterm -e "echo 'Choose Correct option'; read abc"& nxtcmnd
+fi
 fi
 
-elif [ $option == 10 ]
-then
+}
+
+function dig () {
+
+option="999"
+xterm -e "dig $target;read abc" & nxtcmnd
+
+}
+
+function adv () {
 echo
 echo "Choose your option :-"
 echo
@@ -1242,267 +471,278 @@ echo "55. Github GIST Searches"
 echo "56. Search in CT Logs"
 echo "57. Plaintext Password Leak"
 echo "58. What CMS?"
-echo "59. <--- GO BACK --->"
+echo "0. <----Go Back---->"
 echo
 echo "Enter Your Option :-"
 echo
 read ggl_opt
 
-####### Saare options bta die and input le lia
+if [ -z "$ggl_opt" ]
+then
+nxtcmnd
 
+else
 	if [ $ggl_opt == 1 ]
 	then
-	firefox "https://www.google.com/search?q=site:$target+intitle:index.of" & d3_re $target $option
-
+	firefox "https://www.google.com/search?q=site:$target+intitle:index.of" & nxtcmnd
+	
 	elif [ $ggl_opt == 2 ]
 	then
-	firefox "https://www.google.com/search?q=site:$target%20ext:xml%20|%20ext:conf%20|%20ext:cnf%20|%20ext:reg%20|%20ext:inf%20|%20ext:rdp%20|%20ext:cfg%20|%20ext:txt%20|%20ext:ora%20|%20ext:ini"  & d3_re $target $option
+	firefox "https://www.google.com/search?q=site:$target%20ext:xml%20|%20ext:conf%20|%20ext:cnf%20|%20ext:reg%20|%20ext:inf%20|%20ext:rdp%20|%20ext:cfg%20|%20ext:txt%20|%20ext:ora%20|%20ext:ini"  & nxtcmnd
 
 	elif [ $ggl_opt == 3 ]
 	then
-	firefox "https://www.google.com/search?q=site:$target%20ext:sql%20|%20ext:dbf%20|%20ext:mdb" & d3_re $target $option
+	firefox "https://www.google.com/search?q=site:$target%20ext:sql%20|%20ext:dbf%20|%20ext:mdb" & nxtcmnd
 
 	elif [ $ggl_opt == 4 ]
 	then
-	firefox "https://www.google.com/search?q=site:$target%20inurl:wp-%20|%20inurl:wp-content%20|%20inurl:plugins%20|%20inurl:uploads%20|%20inurl:themes%20|%20inurl:download" & d3_re $target $option
+	firefox "https://www.google.com/search?q=site:$target%20inurl:wp-%20|%20inurl:wp-content%20|%20inurl:plugins%20|%20inurl:uploads%20|%20inurl:themes%20|%20inurl:download" & nxtcmnd
 
 	elif [ $ggl_opt == 5 ]
 	then
-	firefox "https://www.google.com/search?q=site:$target%20ext:log"  & d3_re $target $option
+	firefox "https://www.google.com/search?q=site:$target%20ext:log"  & nxtcmnd
 
 	elif [ $ggl_opt == 6 ]
 	then
-	firefox "https://www.google.com/search?q=site:$target%20ext:bkf%20|%20ext:bkp%20|%20ext:bak%20|%20ext:old%20|%20ext:backup"  & d3_re $target $option
+	firefox "https://www.google.com/search?q=site:$target%20ext:bkf%20|%20ext:bkp%20|%20ext:bak%20|%20ext:old%20|%20ext:backup"  & nxtcmnd
 
 	elif [ $ggl_opt == 7 ]
 	then
-	firefox "https://www.google.com/search?q=site:$target%20inurl:login%20|%20inurl:signin%20|%20intitle:Login%20|%20intitle:%20signin%20|%20inurl:auth" & d3_re $target $option
+	firefox "https://www.google.com/search?q=site:$target%20inurl:login%20|%20inurl:signin%20|%20intitle:Login%20|%20intitle:%20signin%20|%20inurl:auth" & nxtcmnd
 
 	elif [ $ggl_opt == 8 ]
 	then
-	firefox "https://www.google.com/search?q=site:$target%20intext:%22sql%20syntax%20near%22%20|%20intext:%22syntax%20error%20has%20occurred%22%20|%20intext:%22incorrect%20syntax%20near%22%20|%20intext:%22unexpected%20end%20of%20SQL%20command%22%20|%20intext:%22Warning:%20mysql_connect()%22%20|%20intext:%22Warning:%20mysql_query()%22%20|%20intext:%22Warning:%20pg_connect()%22" & d3_re $target $option
+	firefox "https://www.google.com/search?q=site:$target%20intext:%22sql%20syntax%20near%22%20|%20intext:%22syntax%20error%20has%20occurred%22%20|%20intext:%22incorrect%20syntax%20near%22%20|%20intext:%22unexpected%20end%20of%20SQL%20command%22%20|%20intext:%22Warning:%20mysql_connect()%22%20|%20intext:%22Warning:%20mysql_query()%22%20|%20intext:%22Warning:%20pg_connect()%22" & nxtcmnd
 
 	elif [ $ggl_opt == 9 ]
 	then
-	firefox "https://www.google.com/search?q=site:$target%20filetype:config%20%22apache%22"  & d3_re $target $option
+	firefox "https://www.google.com/search?q=site:$target%20filetype:config%20%22apache%22"  & nxtcmnd
 
 	elif [ $ggl_opt == 10 ]
 	then 
-	firefox "https://www.google.com/search?q=$target/robots.txt" & d3_re $target $option
+	firefox "https://www.google.com/search?q=$target/robots.txt" & nxtcmnd
 
 	elif [ $ggl_opt == 11 ]
 	then
-	firefox "https://domaineye.com/similar/$target"  & d3_re $target $option
+	firefox "https://domaineye.com/similar/$target"  & nxtcmnd
 
 	elif [ $ggl_opt == 12 ]
 	then
-	firefox "https://www.google.com/search?q=site:$target%20ext:doc%20|%20ext:docx%20|%20ext:odt%20|%20ext:pdf%20|%20ext:rtf%20|%20ext:sxw%20|%20ext:psw%20|%20ext:ppt%20|%20ext:pptx%20|%20ext:pps%20|%20ext:csv" & d3_re $target $option
+	firefox "https://www.google.com/search?q=site:$target%20ext:doc%20|%20ext:docx%20|%20ext:odt%20|%20ext:pdf%20|%20ext:rtf%20|%20ext:sxw%20|%20ext:psw%20|%20ext:ppt%20|%20ext:pptx%20|%20ext:pps%20|%20ext:csv" & nxtcmnd
 
 	elif [ $ggl_opt == 13 ]
 	then
-	firefox "https://www.google.com/search?q=site:$target%20ext:php%20intitle:phpinfo%20%22published%20by%20the%20PHP%20Group%22" & d3_re $target $option
+	firefox "https://www.google.com/search?q=site:$target%20ext:php%20intitle:phpinfo%20%22published%20by%20the%20PHP%20Group%22" & nxtcmnd
 
 	elif [ $ggl_opt == 14 ]
 	then
-	firefox "https://www.google.com/search?q=site:$target%20%20inurl:shell%20|%20inurl:backdoor%20|%20inurl:wso%20|%20inurl:cmd%20|%20shadow%20|%20passwd%20|%20boot.ini%20|%20inurl:backdoor" & d3_re $target $option
+	firefox "https://www.google.com/search?q=site:$target%20%20inurl:shell%20|%20inurl:backdoor%20|%20inurl:wso%20|%20inurl:cmd%20|%20shadow%20|%20passwd%20|%20boot.ini%20|%20inurl:backdoor" & nxtcmnd
 
 	elif [ $ggl_opt == 15 ]
 	then
-	firefox "https://www.google.com/search?q=site:$target%20%20inurl:readme%20|%20inurl:license%20|%20inurl:install%20|%20inurl:setup%20|%20inurl:config" & d3_re $target $option
+	firefox "https://www.google.com/search?q=site:$target%20%20inurl:readme%20|%20inurl:license%20|%20inurl:install%20|%20inurl:setup%20|%20inurl:config" & nxtcmnd
 
 	elif [ $ggl_opt == 16 ]
 	then
-	firefox "https://www.google.com/search?q=site:$target%20inurl:redir%20|%20inurl:url%20|%20inurl:redirect%20|%20inurl:return%20|%20inurl:src=http%20|%20inurl:r=http" & d3_re $target $option
+	firefox "https://www.google.com/search?q=site:$target%20inurl:redir%20|%20inurl:url%20|%20inurl:redirect%20|%20inurl:return%20|%20inurl:src=http%20|%20inurl:r=http" & nxtcmnd
 
 	elif [ $ggl_opt == 17 ]
 	then
-	firefox "https://www.google.com/search?q=site:$target%20ext:action%20|%20ext:struts%20|%20ext:do" & d3_re $target $option
+	firefox "https://www.google.com/search?q=site:$target%20ext:action%20|%20ext:struts%20|%20ext:do" & nxtcmnd
 
 	elif [ $ggl_opt == 18 ]
 	then
-	firefox "https://www.google.com/search?q=site%3Ahttp%3A%2F%2Fideone.com+|+site%3Ahttp%3A%2F%2Fcodebeautify.org+|+site%3Ahttp%3A%2F%2Fcodeshare.io+|+site%3Ahttp%3A%2F%2Fcodepen.io+|+site%3Ahttp%3A%2F%2Frepl.it+|+site%3Ahttp%3A%2F%2Fjustpaste.it+|+site%3Ahttp%3A%2F%2Fpastebin.com+|+site%3Ahttp%3A%2F%2Fjsfiddle.net+|+site%3Ahttp%3A%2F%2Ftrello.com+|+site%3A*.atlassian.net+|+site%3Abitbucket.org+%22%$target%22" & d3_re $target $option
+	firefox "https://www.google.com/search?q=site%3Ahttp%3A%2F%2Fideone.com+|+site%3Ahttp%3A%2F%2Fcodebeautify.org+|+site%3Ahttp%3A%2F%2Fcodeshare.io+|+site%3Ahttp%3A%2F%2Fcodepen.io+|+site%3Ahttp%3A%2F%2Frepl.it+|+site%3Ahttp%3A%2F%2Fjustpaste.it+|+site%3Ahttp%3A%2F%2Fpastebin.com+|+site%3Ahttp%3A%2F%2Fjsfiddle.net+|+site%3Ahttp%3A%2F%2Ftrello.com+|+site%3A*.atlassian.net+|+site%3Abitbucket.org+%22%$target%22" & nxtcmnd
 
 	elif [ $ggl_opt == 19 ]
 	then
-	firefox "https://securityheaders.com/?q=$target&followRedirects=on" & d3_re $target $option
+	firefox "https://securityheaders.com/?q=$target&followRedirects=on" & nxtcmnd
 
 	elif [ $ggl_opt == 20 ]
 	then
-	firefox "https://www.google.com/search?q=inurl:gitlab%20$target" & d3_re $target $option
+	firefox "https://www.google.com/search?q=inurl:gitlab%20$target" & nxtcmnd
 
 	elif [ $ggl_opt == 21 ]
 	then
-	firefox "https://www.google.com/search?q=site:pastebin.com%20$target" & d3_re $target $option
+	firefox "https://www.google.com/search?q=site:pastebin.com%20$target" & nxtcmnd
 
 	elif [ $ggl_opt == 22 ]
 	then
-	firefox "https://www.google.com/search?q=site:linkedin.com%20employees%20$target" & d3_re $target $option
+	firefox "https://www.google.com/search?q=site:linkedin.com%20employees%20$target" & nxtcmnd
 
 	elif [ $ggl_opt == 23 ]
 	then
-	firefox "https://www.google.com/search?q=site:$target%20inurl:%22/phpinfo.php%22%20|%20inurl:%22.htaccess%22" & d3_re $target $option
-
+	firefox "https://www.google.com/search?q=site:$target%20inurl:%22/phpinfo.php%22%20|%20inurl:%22.htaccess%22" & nxtcmnd
+	
 	elif [ $ggl_opt == 24 ]
 	then
-	firefox "https://www.google.com/search?q=site:*.$target" & d3_re $target $option
+	firefox "https://www.google.com/search?q=site:*.$target" & nxtcmnd
 
 	elif [ $ggl_opt == 25 ]
 	then
-	firefox "https://www.google.com/search?q=site:*.*.$target" & d3_re $target $option
-
+	firefox "https://www.google.com/search?q=site:*.*.$target" & nxtcmnd
+	
 	elif [ $ggl_opt == 26 ]
 	then
-	firefox "https://www.google.com/search?q=site:$target%20inurl:wp-content%20|%20inurl:wp-includes" & d3_re $target $option
+	firefox "https://www.google.com/search?q=site:$target%20inurl:wp-content%20|%20inurl:wp-includes" & nxtcmnd
 
 	elif [ $ggl_opt == 27 ]
 	then
-	firefox "https://www.google.com/search?q=site%3Aatlassian.net+|+site%3Abitbucket.org+%22$target%22" & d3_re $target $option
+	firefox "https://www.google.com/search?q=site%3Aatlassian.net+|+site%3Abitbucket.org+%22$target%22" & nxtcmnd
 
 	elif [ $ggl_opt == 28 ]	
 	then
-	firefox "https://community.riskiq.com/search/$target" & d3_re $target $option
+	firefox "https://community.riskiq.com/search/$target" & nxtcmnd
 
 	elif [ $ggl_opt == 29 ]
 	then
-	firefox "https://www.google.com/search?q=site:stackoverflow.com%20%22$target%22" & d3_re $target $option
+	firefox "https://www.google.com/search?q=site:stackoverflow.com%20%22$target%22" & nxtcmnd
 
 	elif [ $ggl_opt == 30 ]
 	then
-	firefox "http://wwwb-dedup.us.archive.org:8083/cdx/search?url=$target/&matchType=domain&collapse=digest&output=text&fl=original,timestamp&filter=urlkey:.*wp[-].*&limit=1000000&xx=" & d3_re $target $option
+	firefox "http://wwwb-dedup.us.archive.org:8083/cdx/search?url=$target/&matchType=domain&collapse=digest&output=text&fl=original,timestamp&filter=urlkey:.*wp[-].*&limit=1000000&xx=" & nxtcmnd
 
 	elif [ $ggl_opt == 31 ]
 	then
-	firefox "https://github.com/search?q=%22*.$target%22" & d3_re $target $option
+	firefox "https://github.com/search?q=%22*.$target%22" & nxtcmnd
 
 	elif [ $ggl_opt == 32 ]
 	then
-	firefox "https://www.openbugbounty.org/search/?search=$target" & d3_re $target $option
+	firefox "https://www.openbugbounty.org/search/?search=$target" & nxtcmnd
 
 	elif [ $ggl_opt == 33 ]
 	then
-	firefox "https://www.reddit.com/search/?q=$target" & d3_re $target $option
+	firefox "https://www.reddit.com/search/?q=$target" & nxtcmnd
 
 	elif [ $ggl_opt == 34 ]
 	then
-	firefox "https://www.google.com/search?q=$target/crossdomain.xml" & d3_re $target $option
+	firefox "https://www.google.com/search?q=$target/crossdomain.xml" & nxtcmnd
 
 	elif [ $ggl_opt == 35 ]
 	then
-	firefox "https://threatcrowd.org/domain.php?domain=$target" & d3_re $target $option
+	firefox "https://threatcrowd.org/domain.php?domain=$target" & nxtcmnd
 
 	elif [ $ggl_opt == 36 ]
 	then
-	firefox "https://www.google.com/search?q=inurl:%22/.git%20%22$target%20-github" & d3_re $target $option
+	firefox "https://www.google.com/search?q=inurl:%22/.git%20%22$target%20-github" & nxtcmnd
 
 	elif [ $ggl_opt == 37 ]
 	then
-	firefox "https://www.youtube.com/results?search_query=$target" & d3_re $target $option
+	firefox "https://www.youtube.com/results?search_query=$target" & nxtcmnd
 
 	elif [ $ggl_opt == 38 ]
 	then
-	firefox "https://www.google.com/search?q=site:digitaloceanspaces.com%20%22$target%22" & d3_re $target $option
+	firefox "https://www.google.com/search?q=site:digitaloceanspaces.com%20%22$target%22" & nxtcmnd
 
 	elif [ $ggl_opt == 39 ]
 	then
-	firefox "https://www.google.com/search?q=inurl$target%20ext:swf" & d3_re $target $option
+	firefox "https://www.google.com/search?q=inurl$target%20ext:swf" & nxtcmnd
 
 	elif [ $ggl_opt == 40 ]
 	then
-	firefox "https://yandex.com/search/?text=site%3A$target++mime%3Aswf&lr=112509" & d3_re $target $option
+	firefox "https://yandex.com/search/?text=site%3A$target++mime%3Aswf&lr=112509" & nxtcmnd
 
 	elif [ $ggl_opt == 41 ]
 	then
-	firefox "https://web.archive.org/cdx/search?url=$target/&matchType=domain&collapse=urlkey&output=text&fl=original&filter=urlkey:.*swf&limit=100000" & d3_re $target $option
+	firefox "https://web.archive.org/cdx/search?url=$target/&matchType=domain&collapse=urlkey&output=text&fl=original&filter=urlkey:.*swf&limit=100000" & nxtcmnd
 
 	elif [ $ggl_opt == 42 ]
 	then
-	firefox "https://web.archive.org/cdx/search?url=$target/&matchType=domain&collapse=urlkey&output=text&fl=original&filter=mimetype:application/x-shockwave-flash&limit=100000" & d3_re $target $option
+	firefox "https://web.archive.org/cdx/search?url=$target/&matchType=domain&collapse=urlkey&output=text&fl=original&filter=mimetype:application/x-shockwave-flash&limit=100000" & nxtcmnd
 
 	elif [ $ggl_opt == 43 ]
 	then
-	firefox "https://web.archive.org/web/*/$target/*" & d3_re $target $option
+	firefox "https://web.archive.org/web/*/$target/*" & nxtcmnd
 
 	elif [ $ggl_opt == 44 ]
 	then
-	firefox "https://viewdns.info/reverseip/?host=$target&t=1" & d3_re $target $option
+	firefox "https://viewdns.info/reverseip/?host=$target&t=1" & nxtcmnd
 
 	elif [ $ggl_opt == 45 ]
 	then
-	firefox "https://www.google.com/search?q=intitle:traefik+inurl:8080/dashboard%22$target%22" & d3_re $target $option
+	firefox "https://www.google.com/search?q=intitle:traefik+inurl:8080/dashboard%22$target%22" & nxtcmnd
 
 	elif [ $ggl_opt == 46 ]
 	then
-	firefox "https://cse.google.com/cse?cx=002972716746423218710:veac6ui3rio#gsc.tab=0&gsc.q=$target" & d3_re $target $option
+	firefox "https://cse.google.com/cse?cx=002972716746423218710:veac6ui3rio#gsc.tab=0&gsc.q=$target" & nxtcmnd
 
 	elif [ $ggl_opt == 47 ]
 	then
-	firefox "https://www.google.com/search?q=site:.s3.amazonaws.com%20%22$target%22" & d3_re $target $option
+	firefox "https://www.google.com/search?q=site:.s3.amazonaws.com%20%22$target%22" & nxtcmnd
 
 	elif [ $ggl_opt == 48 ]
 	then
-	firefox "https://publicwww.com/websites/%22$target%22/" & d3_re $target $option
+	firefox "https://publicwww.com/websites/%22$target%22/" & nxtcmnd
 
 	elif [ $ggl_opt == 49 ]
 	then
-	firefox "https://censys.io/ipv4?q=$target" & d3_re $target $option
+	firefox "https://censys.io/ipv4?q=$target" & nxtcmnd
 
 	elif [ $ggl_opt == 50 ]	
 	then
-	firefox "https://censys.io/domain?q=$target" & d3_re $target $option
+	firefox "https://censys.io/domain?q=$target" & nxtcmnd
 
 	elif [ $ggl_opt == 51 ]
 	then
-	firefox "https://censys.io/certificates?q=$target" & d3_re $target $option
+	firefox "https://censys.io/certificates?q=$target" & nxtcmnd
 
 	elif [ $ggl_opt == 52 ]
 	then
-	firefox "https://www.shodan.io/search?query=$target" & d3_re $target $option
+	firefox "https://www.shodan.io/search?query=$target" & nxtcmnd
 
 	elif [ $ggl_opt == 53 ]
 	then
-	firefox "https://www.google.com/search?q=.sharepoint.com/_vti_bin/webpartpages/asmx%20-docs%20-msdn%20-mdsec%20site:$target" & d3_re $target $option
+	firefox "https://www.google.com/search?q=.sharepoint.com/_vti_bin/webpartpages/asmx%20-docs%20-msdn%20-mdsec%20site:$target" & nxtcmnd
 
 	elif [ $ggl_opt == 54 ]
 	then
-	firefox "https://www.google.com/search?q=site:$target%20filetype:wsdl%20|%20filetype:WSDL%20|%20ext:svc%20|%20inurl:wsdl%20|%20Filetype:%20?wsdl%20|%20inurl:asmx?wsdl%20|%20inurl:jws?wsdl%20|%20intitle:_vti_bin/sites.asmx?wsdl%20|%20inurl:_vti_bin/sites.asmx?wsdl" & d3_re $target $option
+	firefox "https://www.google.com/search?q=site:$target%20filetype:wsdl%20|%20filetype:WSDL%20|%20ext:svc%20|%20inurl:wsdl%20|%20Filetype:%20?wsdl%20|%20inurl:asmx?wsdl%20|%20inurl:jws?wsdl%20|%20intitle:_vti_bin/sites.asmx?wsdl%20|%20inurl:_vti_bin/sites.asmx?wsdl" & nxtcmnd
 
 	elif [ $ggl_opt == 55 ]
 	then
-	firefox "https://gist.github.com/search?q=*.%22$target%22" & d3_re $target $option
+	firefox "https://gist.github.com/search?q=*.%22$target%22" & nxtcmnd
 
 	elif [ $ggl_opt == 56 ]
 	then
-	firefox "https://crt.sh/?q=$target" & d3_re $target $option
+	firefox "https://crt.sh/?q=$target" & nxtcmnd
 
 	elif [ $ggl_opt == 57 ]
 	then
-	firefox "https://www.google.com/search?q=site:throwbin.io%20$target" & d3_re $target $option
-
+	firefox "https://www.google.com/search?q=site:throwbin.io%20$target" & nxtcmnd
+	
 	elif [ $ggl_opt == 58 ]
 	then
-	firefox "https://whatcms.org/?s=$target" & d3_re $target $option
-
-	elif [ $ggl_opt == 59 ]
+	firefox "https://whatcms.org/?s=$target" & nxtcmnd
+	
+	elif [ $ggl_opt == 0 ]
 	then
-	echo
-	D3m0n_4U $target
+	option="999"
+	nxtcmnd
 
 	else
-	echo
-	xterm -e "echo 'Choose correct option 1-59'; read abc" & d3_re $target $option
+	xterm -e "echo 'Choose correct option 0-58';read abc"& nxtcmnd
+fi
 fi
 
-elif [ $option == 11 ]
-then
+}
+
+function spdr () {
+
 echo
 echo "Choose an option"
 echo
 echo "1. Specific Target: $target"
 echo "2. Enter the location of List of URLs"
-echo "3. <--- GO BACK --->"
+echo "0. <----Go Back---->"
 echo
 read spd_opt
 echo
+
+if [ -z "$spd_opt" ]
+then
+nxtcmnd
+
+else
 
     if [ $spd_opt == 1 ]
     then
@@ -1555,7 +795,7 @@ echo
     echo 'fi' >> tempspider.sh
     echo 'rm -rf tempspider.sh' >> tempspider.sh
     chmod +x tempspider.sh
-    xterm -e "./tempspider.sh $target; read abc" & d3_re $target $option
+    xterm -e "./tempspider.sh $target; read abc" & nxtcmnd
     
     elif [ $spd_opt == 2 ]
     then
@@ -1615,861 +855,161 @@ echo
     echo 'fi' >> tempmultispider.sh
     echo ' rm -rf tempmultispider.sh' >> tempmultispider.sh
     chmod +x tempmultispider.sh
-    xterm -e "./tempmultispider.sh $url_list; read abc" & d3_re $target $option
+    xterm -e "./tempmultispider.sh $url_list; read abc" & nxtcmnd
     
-    elif [ $spd_opt == 3 ]
-	then
-	echo
-	D3m0n_4U $target
+    elif [ $spd_opt == 0 ]
+    then
+    option="999"
+    nxtcmnd
     
     else 
-    xterm -e "echo 'Please Choose Correct Option';read abc" & d3_re $target $option
-    
+    xterm -e "echo 'Please Choose Correct Option';read abc" & nxtcmnd
+    fi
 fi
+
+}
+
+function bye () {
+
+clear
+toilet "See You 
+Again Soon"|lolcat & sleep 1;clear
+
+}
+
+function chng () {
+
+option="999"
+echo
+echo "Enter New Target" | lolcat
+echo
+read target
+nxtcmnd
+
+}
+
+#Function for Options Section
+
+function D3m0n_4U () {
+
+echo
+echo "Now Choose an option"
+echo
+
+####### OPTIONS TIME
+
+echo "1.  Ping Target"  ## Ping target with 2 different styles
+echo "2.  Reverse IP Lookup"  ## Will show other domains sharing same server
+echo "3.  Traceroute Target"  ## Traceroute the target
+echo "4.  NSlookup Target" 
+echo "5.  Check for Whois"
+echo "6.  Find Directories"  ## Will find directories with dictionery attack
+echo "7.  Find SubDomains"  
+echo "8.  Find emails with domain"
+echo "9.  Dig Target"
+echo "10. Advanced Recon"  ## Will have advanced google dorks
+echo "11. Spider"  ## Crawl target with single and multiple target list
+echo "99. Bye Bye!!!"  ## Exit Flag
+echo "0.  Change Target"  ## Able to Change Target
+echo
+echo "Enter Your Option :-"
+echo
+read option
+echo
+
+if [ $option == 99 ]
+then
+bye
+
+else
+nxtcmnd
+fi
+
+}
+
+function choseopt () {
+
+if [ -z "$option" ]
+then
+D3m0n_4U
+
+elif [ $option == "1" ]
+then
+pingt
+
+elif [ $option == "2" ]
+then
+revip
+
+elif [ $option == "3" ]
+then
+tracert 
+
+elif [ $option == "4" ]
+then
+nslkp
+
+elif [ $option == "5" ]
+then
+whois
+
+elif [ $option == "6" ]
+then
+drtfnd
+
+elif [ $option == "7" ]
+then
+subdrt
+
+elif [ $option == "8" ]
+then
+email
+
+elif [ $option == "9" ]
+then
+dig
+
+elif [ $option == "10" ]
+then
+adv
+
+elif [ $option == "11" ]
+then
+spdr
+
+elif [ $option == "999" ]
+then
+D3m0n_4U
+
+elif [ $option == "0" ]
+then
+chng
+
+else
+echo "Choose a Suitable Option" | lolcat
+D3m0n_4U
+
 fi
 }
 
+# Start of Tool
+clear
 toilet  "Welome
 D3m0n4U"|lolcat
 echo
 echo
 echo "Here We go"
 echo
-echo "Please Enter Target"
+target=$1
+echo "Target is : $target" & sleep 1; clear
 echo
-read target
-####### TARGET DEFINED
-#target=$1
-
 echo
-echo "Target is : $target"
+echo "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-" | lolcat
+echo "*              Enter Your Command                   *" | lolcat
+echo "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-" | lolcat
 echo
-echo "Now Choose an option"
-
-####### OPTIONS TIME
-
-echo "1.  Ping Target"
-# iske further 2 part honge
-
-echo "2.  Reverse IP Lookup"
-echo "3.  Traceroute Target"
-echo "4.  NSlookup Target"
-echo "5.  Check for Whois"
-echo "6.  Find Directories"
-#ask directory option
-
-echo "7.  Find SubDomains"
-echo "8.  Find emails with domain"
-# Ask for Dictionary
-
-echo "9.  Dig Target"
-
-echo "10. Advanced Recon"
-echo "11. Spider"
-#iske further parts
-#echo "11. Nmap Scan"
-#further parts
-echo "99. Bye Bye!!!"
-echo "0.  Change Target"
-
+echo "             Target is: $target" | lolcat
 echo
-echo "Enter Your Option :-"
-echo
-read option
-echo
-####### OPTION DEFINED
-
-if [ $option == 1 ]
-then
-#ye png lie h
-	echo
-	echo "Choose One Option"
-	echo
-	echo "1. normal ping"
-	echo "2. ping with packet size"
-	echo
-	read ping_opt
-
-			if [ $ping_opt == 1 ]
-		 then
-			xterm -e "ping -c3 $target; read abc" & d3_re $target $option
-
-		elif [ $ping_opt == 2 ]
-		then
-
-		echo
-			echo "tell packet size"
-	echo
-	read pack_size
-		xterm -e "ping -c 3 -M do -s $(( $pack_size - 28 )) $target; read abc"& d3_re $target $option
-		else
-			xterm -e "echo 'Choose 1 or 2';read abc"& d3_re $target $option
-fi
-
-#######yaha ping lie pura ho gya normal and MTU size dekhne lie
-
-elif [ $option == 2 ]
-then
-xterm -e "curl https://api.hackertarget.com/reverseiplookup/?q=$target; read abc"& D3m0n_4U $target
-echo
-#######yaha point 2 reverse ip domain check
-
-elif [ $option == 3 ]
-then
-xterm -e "traceroute $target; read abc"& D3m0n_4U $target
-
-####### yaha trace route
-
-elif [ $option == 4 ]
-then 
-xterm -e "nslookup $target; read abc"& D3m0n_4U $target
-
-####### yaha nslookup complete
-
-elif [ $option == 5 ]
-then
-xterm -e "whois $target; read abc"& D3m0n_4U $target
-
-####### whois complete
-
-elif [ $option == 6 ]
-then
-echo
-echo "Do you want to give custom wordlist?"
-echo "0. NO"
-echo "1. YES"
-echo
-read ans
-
-####### yaha wordlist puchi
-
-	echo
-	if [ $ans == 1 ]
-	then
-	echo "Please provide Location"
-	read location
-	xterm -e "dirb https://$target $location; read abc"& d3_re $target $option
-
-	elif [ $ans == 0 ]
-	then
-	xterm -e "dirb https://$target; read abc"& d3_re $target $option
-
-	else
-	xterm -e "echo 'choose 0/1';read abc"& d3_re $target $option
+D3m0n_4U
 
 fi
-
-####### dirb completed
-
-elif [ $option == 7 ]
-then
-xterm -e "sublist3r -d $target; read abc"& D3m0n_4U $target
-
-####### Subdomain complete
-
-elif [ $option == 8 ]
-then
-echo
-echo "Choose One option"
-echo
-echo "1. Anubis"
-echo "2. Baidu"
-echo "3. Bing" 
-echo "4. Binaryedge" 
-echo "5. Bingapi" 
-echo "6. Bufferoverun"
-echo "7. Censys"
-echo "8. Certspotter" 
-echo "9. Crtsh" 
-echo "10. Dnsdumpster" 
-echo "11. Duckduckgo" 
-echo "12. Fullhunt" 
-echo "13. Github-code" 
-echo "14. Google" 
-echo "15. Hackertarget" 
-echo "16. Hunter" 
-echo "17. Intelx" 
-echo "18. Linkedin" 
-echo "19. Linkedin_links" 
-echo "20. N45ht" 
-echo "21. Omnisint" 
-echo "22. Otx" 
-echo "23. Pentesttools" 
-echo "24. Projectdiscovery" 
-echo "25. Qwant" 
-echo "26. Rapiddns" 
-echo "27. Rocketreach" 
-echo "28. SecurityTrails" 
-echo "29. Sublist3r" 
-echo "30. Threatcrowd" 
-echo "31. Threatminer" 
-echo "32. Trello" 
-echo "33. Twitter" 
-echo "34. Urlscan" 
-echo "35. Virustotal" 
-echo "36. Yahoo" 
-echo "37. Zoomeye"
-echo "38. Spyse"
-echo "39. All" 
-echo
-echo "Now Select one Option"
-echo
-read harv_opt
-
-	if [ $harv_opt == 1 ]
-	then
-	xterm -e "theHarvester -d $target -b anubis; read abc"& d3_re $target $option
-
-	elif [ $harv_opt == 2 ]
-	then
-	xterm -e "theHarvester -d $target -b baidu; read abc"& d3_re $target $option
-
-        elif [ $harv_opt == 3 ]
-        then
-        xterm -e "theHarvester -d $target -b bing; read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 4 ]
-        then
-        xterm -e "theHarvester -d $target -b binaryedge; read abc" & d3_re $target $option
-
-
-        elif [ $harv_opt == 5 ]
-        then
-        xterm -e "theHarvester -d $target -b bingapi; read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 6 ]
-        then
-        xterm -e "theHarvester -d $target -b bufferoverun; read abc" & d3_re $target $option
-
-
-        elif [ $harv_opt == 7 ]
-        then
-        xterm -e "theHarvester -d $target -b censys;read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 8 ]
-        then
-        xterm -e "theHarvester -d $target -b certspotter; read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 9 ]
-        then
-        xterm -e "theHarvester -d $target -b crtsh;read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 10 ]
-        then
-        xterm -e "theHarvester -d $target -b dnsdumpster; read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 11 ]
-        then
-        xterm -e "theHarvester -d $target -b duckduckgo;read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 12 ]
-        then
-        xterm -e "theHarvester -d $target -b fullhunt; read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 13 ]
-        then
-        xterm -e "theHarvester -d $target -b github-code; read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 14 ]
-        then
-        xterm -e "theHarvester -d $target -b google;read abc" & d3_re $target $option
-
-
-        elif [ $harv_opt == 15 ]
-        then
-        xterm -e "theHarvester -d $target -b hackertarget; read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 16 ]
-        then
-        xterm -e "theHarvester -d $target -b hunter; read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 17 ]
-        then
-        xterm -e "theHarvester -d $target -b intelx;read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 18 ]
-        then
-        xterm -e "theHarvester -d $target -b linkedin; read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 19 ]
-        then
-        xterm -e "theHarvester -d $target -b linkedin_links;read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 20 ]
-        then
-        xterm -e "theHarvester -d $target -b n45ht; read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 21 ]
-        then
-        xterm -e "theHarvester -d $target -b omnisint;read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 22 ]
-        then
-        xterm -e "theHarvester -d $target -b otx;read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 23 ]
-        then
-        xterm -e "theHarvester -d $target -b pentesttools;read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 24 ]
-        then
-        xterm -e "theHarvester -d $target -b projectdiscovery; read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 25 ]
-        then
-        xterm -e "theHarvester -d $target -b owant; read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 26 ]
-        then
-        xterm -e "theHarvester -d $target -b rapiddns;read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 27 ]
-        then
-        xterm -e "theHarvester -d $target -b rocketreach;read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 28 ]
-        then
-        xterm -e "theHarvester -d $target -b securitytrails; read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 29 ]
-        then
-        xterm -e "theHarvester -d $target -b sublist3r; read abc"& d3_re $target $option
-
-
-        elif [ $harv_opt == 30 ]
-        then
-        xterm -e "theHarvester -d $target -b threatcrowd; read abc"& d3_re $target $option 
-
-
-        elif [ $harv_opt == 31 ]
-        then
-        xterm -e "theHarvester -d $target -b threatminer; read abc"& d3_re $target $option 
-
-
-        elif [ $harv_opt == 32 ]
-        then
-        xterm -e "theHarvester -d $target -b trello; read abc"& d3_re $target $option 
-
-
-        elif [ $harv_opt == 33 ]
-        then
-        xterm -e "theHarvester -d $target -b twitter; read abc"& d3_re $target $option 
-
-
-        elif [ $harv_opt == 34 ]
-        then
-        xterm -e "theHarvester -d $target -b urlscan; read abc"& d3_re $target $option  
-
-
-        elif [ $harv_opt == 35 ]
-        then
-        xterm -e "theHarvester -d $target -b virustotal; read abc"& d3_re $target $option  
-
-
-        elif [ $harv_opt == 36 ]
-        then
-        xterm -e "theHarvester -d $target -b yahoo; read abc"& d3_re $target $option 
-
-
-        elif [ $harv_opt == 37 ]
-        then
-        xterm -e "theHarvester -d $target -b zoomeye; read abc"& d3_re $target $option 
-
-	elif [ $harv_opt == 38 ]
-	then
-	xterm -e "theHarvester -d $target -b spyse; read abc"& d3_re $target $option
-
-	elif [ $harv_opt == 39 ]
-	then
-	xterm -e "theHarvester -d $target -b all; read abc"& d3_re $target $option
-
-	else
-	xterm -e "echo 'Choose Correct option'; read abc"& d3_re $target $option
-fi
-
-####### theHarvester done
-
-elif [ $option == 9 ]
-then
-xterm -e "dig $target;read abc" & D3m0n_4U $target
-
-####### Dig complete
-
-elif [ $option == 10 ]
-then
-echo
-echo "Choose your option :-"
-echo
-echo
-echo "1. Directory Listings for Target"
-echo "2. Configuration files"
-echo "3. Database Files"
-echo "4. WordPress"
-echo "5. Log Files"
-echo "6. Backup and old files"
-echo "7. Login Pages"
-echo "8. SQL Errors"
-echo "9. Apache Config Files"
-echo "10. Robots.txt File"
-echo "11. DomainEye"
-echo "12. Publically Exposed Documents"
-echo "13. phpinfo()"
-echo "14. Findind Backdoors"
-echo "15. Install / Setup Files"
-echo "16. Open Redirects"
-echo "17. Apache STRUTS RCE"
-echo "18. 3rd Party Exposure"
-echo "19. Check Security Headers"
-echo "20. Git Lab"
-echo "21. Find Pastebin entries"
-echo "22. Employees on LINKEDIN"
-echo "23. htaccess sensitive files"
-echo "24. Find Subdomains"
-echo "25. Find Sub Subdomains"
-echo "26. Find WordPress #2"
-echo "27. Search in Bitbucket and Atlassian"
-echo "28. Passive Total"
-echo "29. Search in Stackoverflow"
-echo "30. Find WordPress [WayBack Machine]"
-echo "31. Search in GITHUB"
-echo "32. Search in OpenBugBounty"
-echo "33. Search in Reddit"
-echo "34. Test CrossDomain"
-echo "35. Check in ThreatCrowd"
-echo "36. .git folder"
-echo "37. YouTube"
-echo "38. Digital Ocean Spaces"
-echo "39. Find .SWF File (Google)"
-echo "40. Find .SWF File (Yandex)"
-echo "41. Search SWF in WayBack"
-echo "42. Search in WayBack #2"
-echo "43. Search in WayBack #3"
-echo "44. Reverse IP Lookup"
-echo "45. Traefik"
-echo "46. Cloud Storage and Buckets"
-echo "47. s3 Buckets"
-echo "48. Sourcecode - Public WWW"
-echo "49. Check in CENSYS [IP4]"
-echo "50. Check in CENSYS [DOMAINS]"
-echo "51. Check in CENSYS [CERTS]"
-echo "52. Search in Shodan"
-echo "53. CVE-2020-0646 SharePoint RCE"
-echo "54. API EndPoints - WSDL"
-echo "55. Github GIST Searches"
-echo "56. Search in CT Logs"
-echo "57. Plaintext Password Leak"
-echo "58. What CMS?"
-echo
-echo "Enter Your Option :-"
-echo
-read ggl_opt
-
-####### Saare options bta die and input le lia
-
-	if [ $ggl_opt == 1 ]
-	then
-	firefox "https://www.google.com/search?q=site:$target+intitle:index.of" & d3_re $target $option
-	
-	elif [ $ggl_opt == 2 ]
-	then
-	firefox "https://www.google.com/search?q=site:$target%20ext:xml%20|%20ext:conf%20|%20ext:cnf%20|%20ext:reg%20|%20ext:inf%20|%20ext:rdp%20|%20ext:cfg%20|%20ext:txt%20|%20ext:ora%20|%20ext:ini"  & d3_re $target $option
-
-	elif [ $ggl_opt == 3 ]
-	then
-	firefox "https://www.google.com/search?q=site:$target%20ext:sql%20|%20ext:dbf%20|%20ext:mdb" & d3_re $target $option
-
-	elif [ $ggl_opt == 4 ]
-	then
-	firefox "https://www.google.com/search?q=site:$target%20inurl:wp-%20|%20inurl:wp-content%20|%20inurl:plugins%20|%20inurl:uploads%20|%20inurl:themes%20|%20inurl:download" & d3_re $target $option
-
-	elif [ $ggl_opt == 5 ]
-	then
-	firefox "https://www.google.com/search?q=site:$target%20ext:log"  & d3_re $target $option
-
-	elif [ $ggl_opt == 6 ]
-	then
-	firefox "https://www.google.com/search?q=site:$target%20ext:bkf%20|%20ext:bkp%20|%20ext:bak%20|%20ext:old%20|%20ext:backup"  & d3_re $target $option
-
-	elif [ $ggl_opt == 7 ]
-	then
-	firefox "https://www.google.com/search?q=site:$target%20inurl:login%20|%20inurl:signin%20|%20intitle:Login%20|%20intitle:%20signin%20|%20inurl:auth" & d3_re $target $option
-
-	elif [ $ggl_opt == 8 ]
-	then
-	firefox "https://www.google.com/search?q=site:$target%20intext:%22sql%20syntax%20near%22%20|%20intext:%22syntax%20error%20has%20occurred%22%20|%20intext:%22incorrect%20syntax%20near%22%20|%20intext:%22unexpected%20end%20of%20SQL%20command%22%20|%20intext:%22Warning:%20mysql_connect()%22%20|%20intext:%22Warning:%20mysql_query()%22%20|%20intext:%22Warning:%20pg_connect()%22" & d3_re $target $option
-
-	elif [ $ggl_opt == 9 ]
-	then
-	firefox "https://www.google.com/search?q=site:$target%20filetype:config%20%22apache%22"  & d3_re $target $option
-
-	elif [ $ggl_opt == 10 ]
-	then 
-	firefox "https://www.google.com/search?q=$target/robots.txt" & d3_re $target $option
-
-	elif [ $ggl_opt == 11 ]
-	then
-	firefox "https://domaineye.com/similar/$target"  & d3_re $target $option
-
-	elif [ $ggl_opt == 12 ]
-	then
-	firefox "https://www.google.com/search?q=site:$target%20ext:doc%20|%20ext:docx%20|%20ext:odt%20|%20ext:pdf%20|%20ext:rtf%20|%20ext:sxw%20|%20ext:psw%20|%20ext:ppt%20|%20ext:pptx%20|%20ext:pps%20|%20ext:csv" & d3_re $target $option
-
-	elif [ $ggl_opt == 13 ]
-	then
-	firefox "https://www.google.com/search?q=site:$target%20ext:php%20intitle:phpinfo%20%22published%20by%20the%20PHP%20Group%22" & d3_re $target $option
-
-	elif [ $ggl_opt == 14 ]
-	then
-	firefox "https://www.google.com/search?q=site:$target%20%20inurl:shell%20|%20inurl:backdoor%20|%20inurl:wso%20|%20inurl:cmd%20|%20shadow%20|%20passwd%20|%20boot.ini%20|%20inurl:backdoor" & d3_re $target $option
-
-	elif [ $ggl_opt == 15 ]
-	then
-	firefox "https://www.google.com/search?q=site:$target%20%20inurl:readme%20|%20inurl:license%20|%20inurl:install%20|%20inurl:setup%20|%20inurl:config" & ./d3_re $target $option
-
-	elif [ $ggl_opt == 16 ]
-	then
-	firefox "https://www.google.com/search?q=site:$target%20inurl:redir%20|%20inurl:url%20|%20inurl:redirect%20|%20inurl:return%20|%20inurl:src=http%20|%20inurl:r=http" & d3_re $target $option
-
-	elif [ $ggl_opt == 17 ]
-	then
-	firefox "https://www.google.com/search?q=site:$target%20ext:action%20|%20ext:struts%20|%20ext:do" & d3_re $target $option
-
-	elif [ $ggl_opt == 18 ]
-	then
-	firefox "https://www.google.com/search?q=site%3Ahttp%3A%2F%2Fideone.com+|+site%3Ahttp%3A%2F%2Fcodebeautify.org+|+site%3Ahttp%3A%2F%2Fcodeshare.io+|+site%3Ahttp%3A%2F%2Fcodepen.io+|+site%3Ahttp%3A%2F%2Frepl.it+|+site%3Ahttp%3A%2F%2Fjustpaste.it+|+site%3Ahttp%3A%2F%2Fpastebin.com+|+site%3Ahttp%3A%2F%2Fjsfiddle.net+|+site%3Ahttp%3A%2F%2Ftrello.com+|+site%3A*.atlassian.net+|+site%3Abitbucket.org+%22%$target%22" & d3_re $target $option
-
-	elif [ $ggl_opt == 19 ]
-	then
-	firefox "https://securityheaders.com/?q=$target&followRedirects=on" & d3_re $target $option
-
-	elif [ $ggl_opt == 20 ]
-	then
-	firefox "https://www.google.com/search?q=inurl:gitlab%20$target" & d3_re $target $option
-
-	elif [ $ggl_opt == 21 ]
-	then
-	firefox "https://www.google.com/search?q=site:pastebin.com%20$target" & d3_re $target $option
-
-	elif [ $ggl_opt == 22 ]
-	then
-	firefox "https://www.google.com/search?q=site:linkedin.com%20employees%20$target" & d3_re $target $option
-
-	elif [ $ggl_opt == 23 ]
-	then
-	firefox "https://www.google.com/search?q=site:$target%20inurl:%22/phpinfo.php%22%20|%20inurl:%22.htaccess%22" & d3_re $target $option
-	
-	elif [ $ggl_opt == 24 ]
-	then
-	firefox "https://www.google.com/search?q=site:*.$target" & d3_re $target $option
-
-	elif [ $ggl_opt == 25 ]
-	then
-	firefox "https://www.google.com/search?q=site:*.*.$target" & d3_re $target $option
-	
-	elif [ $ggl_opt == 26 ]
-	then
-	firefox "https://www.google.com/search?q=site:$target%20inurl:wp-content%20|%20inurl:wp-includes" & d3_re $target $option
-
-	elif [ $ggl_opt == 27 ]
-	then
-	firefox "https://www.google.com/search?q=site%3Aatlassian.net+|+site%3Abitbucket.org+%22$target%22" & d3_re $target $option
-
-	elif [ $ggl_opt == 28 ]	
-	then
-	firefox "https://community.riskiq.com/search/$target" & d3_re $target $option
-
-	elif [ $ggl_opt == 29 ]
-	then
-	firefox "https://www.google.com/search?q=site:stackoverflow.com%20%22$target%22" & d3_re $target $option
-
-	elif [ $ggl_opt == 30 ]
-	then
-	firefox "http://wwwb-dedup.us.archive.org:8083/cdx/search?url=$target/&matchType=domain&collapse=digest&output=text&fl=original,timestamp&filter=urlkey:.*wp[-].*&limit=1000000&xx=" & d3_re $target $option
-
-	elif [ $ggl_opt == 31 ]
-	then
-	firefox "https://github.com/search?q=%22*.$target%22" & d3_re $target $option
-
-	elif [ $ggl_opt == 32 ]
-	then
-	firefox "https://www.openbugbounty.org/search/?search=$target" & d3_re $target $option
-
-	elif [ $ggl_opt == 33 ]
-	then
-	firefox "https://www.reddit.com/search/?q=$target" & d3_re $target $option
-
-	elif [ $ggl_opt == 34 ]
-	then
-	firefox "https://www.google.com/search?q=$target/crossdomain.xml" & d3_re $target $option
-
-	elif [ $ggl_opt == 35 ]
-	then
-	firefox "https://threatcrowd.org/domain.php?domain=$target" & d3_re $target $option
-
-	elif [ $ggl_opt == 36 ]
-	then
-	firefox "https://www.google.com/search?q=inurl:%22/.git%20%22$target%20-github" & d3_re $target $option
-
-	elif [ $ggl_opt == 37 ]
-	then
-	firefox "https://www.youtube.com/results?search_query=$target" & d3_re $target $option
-
-	elif [ $ggl_opt == 38 ]
-	then
-	firefox "https://www.google.com/search?q=site:digitaloceanspaces.com%20%22$target%22" & d3_re $target $option
-
-	elif [ $ggl_opt == 39 ]
-	then
-	firefox "https://www.google.com/search?q=inurl$target%20ext:swf" & d3_re $target $option
-
-	elif [ $ggl_opt == 40 ]
-	then
-	firefox "https://yandex.com/search/?text=site%3A$target++mime%3Aswf&lr=112509" & d3_re $target $option
-
-	elif [ $ggl_opt == 41 ]
-	then
-	firefox "https://web.archive.org/cdx/search?url=$target/&matchType=domain&collapse=urlkey&output=text&fl=original&filter=urlkey:.*swf&limit=100000" & d3_re $target $option
-
-	elif [ $ggl_opt == 42 ]
-	then
-	firefox "https://web.archive.org/cdx/search?url=$target/&matchType=domain&collapse=urlkey&output=text&fl=original&filter=mimetype:application/x-shockwave-flash&limit=100000" & d3_re $target $option
-
-	elif [ $ggl_opt == 43 ]
-	then
-	firefox "https://web.archive.org/web/*/$target/*" & d3_re $target $option
-
-	elif [ $ggl_opt == 44 ]
-	then
-	firefox "https://viewdns.info/reverseip/?host=$target&t=1" & d3_re $target $option
-
-	elif [ $ggl_opt == 45 ]
-	then
-	firefox "https://www.google.com/search?q=intitle:traefik+inurl:8080/dashboard%22$target%22" & d3_re $target $option
-
-	elif [ $ggl_opt == 46 ]
-	then
-	firefox "https://cse.google.com/cse?cx=002972716746423218710:veac6ui3rio#gsc.tab=0&gsc.q=$target" & d3_re $target $option
-
-	elif [ $ggl_opt == 47 ]
-	then
-	firefox "https://www.google.com/search?q=site:.s3.amazonaws.com%20%22$target%22" & d3_re $target $option
-
-	elif [ $ggl_opt == 48 ]
-	then
-	firefox "https://publicwww.com/websites/%22$target%22/" & d3_re $target $option
-
-	elif [ $ggl_opt == 49 ]
-	then
-	firefox "https://censys.io/ipv4?q=$target" & d3_re $target $option
-
-	elif [ $ggl_opt == 50 ]	
-	then
-	firefox "https://censys.io/domain?q=$target" & d3_re $target $option
-
-	elif [ $ggl_opt == 51 ]
-	then
-	firefox "https://censys.io/certificates?q=$target" & d3_re $target $option
-
-	elif [ $ggl_opt == 52 ]
-	then
-	firefox "https://www.shodan.io/search?query=$target" & d3_re $target $option
-
-	elif [ $ggl_opt == 53 ]
-	then
-	firefox "https://www.google.com/search?q=.sharepoint.com/_vti_bin/webpartpages/asmx%20-docs%20-msdn%20-mdsec%20site:$target" & d3_re $target $option
-
-	elif [ $ggl_opt == 54 ]
-	then
-	firefox "https://www.google.com/search?q=site:$target%20filetype:wsdl%20|%20filetype:WSDL%20|%20ext:svc%20|%20inurl:wsdl%20|%20Filetype:%20?wsdl%20|%20inurl:asmx?wsdl%20|%20inurl:jws?wsdl%20|%20intitle:_vti_bin/sites.asmx?wsdl%20|%20inurl:_vti_bin/sites.asmx?wsdl" & d3_re $target $option
-
-	elif [ $ggl_opt == 55 ]
-	then
-	firefox "https://gist.github.com/search?q=*.%22$target%22" & d3_re $target $option
-
-	elif [ $ggl_opt == 56 ]
-	then
-	firefox "https://crt.sh/?q=$target" & d3_re $target $option
-
-	elif [ $ggl_opt == 57 ]
-	then
-	firefox "https://www.google.com/search?q=site:throwbin.io%20$target" & d3_re $target $option
-	
-	elif [ $ggl_opt == 58 ]
-	then
-	firefox "https://whatcms.org/?s=$target" & d3_re $target $option
-
-	else
-	xterm -e "echo 'Choose correct option 1-58';read abc"& d3_re $target $option
-fi
-
-elif [ $option == 11 ]
-then
-echo
-echo "Choose an option"
-echo
-echo "1. Specific Target: $target"
-echo "2. Enter the location of List of URLs"
-echo
-read spd_opt
-
-    if [ $spd_opt == 1 ]
-    then
-    echo '#!/bin/bash' >> tempspider.sh
-
-    echo '# Function to crawl a webpage and extract links' >> tempspider.sh
-    echo 'function crawl_page() {' >> tempspider.sh
-    echo '    local url="$1"' >> tempspider.sh
-    echo '    local depth="$2"' >> tempspider.sh
-    echo '    local indent="$3"' >> tempspider.sh
-
-    echo '    # Download the webpage' >> tempspider.sh
-    echo '    wget -q -O "$depth.html" "$url"' >> tempspider.sh
-
-    echo '    # Extract links from the webpage' >> tempspider.sh
-    echo '    grep -o '\''<a [^>]*href=["'\''"'\''"'\''][^"'\''"'\''"'\'']*["'\''"'\''"'\'']'\'' "$depth.html" | ' >> tempspider.sh
-    echo '    sed -e '\''s/^<a [^>]*href=["'\''"'\''"'\'']//'\'' -e '\''s/["'\''"'\''"'\'']$//'\'' |' >> tempspider.sh 
-    echo '    grep '\''^http'\'' | ' >> tempspider.sh
-    echo '    while read -r link; do' >> tempspider.sh
-    echo '		  echo "$indent$link" >> $sitemap ' >> tempspider.sh
-    echo '        echo "$indent$link"' >> tempspider.sh
-    echo '        if [ "$depth" -lt "$MAX_DEPTH" ]; then' >> tempspider.sh
-    echo '            crawl_page "$link" $((depth + 1)) "$indent  "' >> tempspider.sh
-    echo '        fi' >> tempspider.sh
-    echo '    done' >> tempspider.sh
-    echo '}' >> tempspider.sh
-
-    echo '# Main function' >> tempspider.sh
-    echo 'function main() {' >> tempspider.sh
-    echo '    local start_url="$1"' >> tempspider.sh
-    echo '    MAX_DEPTH=3  # Maximum depth to crawl' >> tempspider.sh
-
-    echo '    # Create sitemap file' >> tempspider.sh
-    echo '    sitemap="sitemap.txt"' >> tempspider.sh
-    echo '    touch "$sitemap"' >> tempspider.sh
-
-    echo '    # Crawl the website' >> tempspider.sh
-    echo '    crawl_page "$start_url" 0 ""' >> tempspider.sh
-
-    echo '    # Remove temporary files' >> tempspider.sh
-    echo '    rm *.html' >> tempspider.sh
-    echo '}' >> tempspider.sh
-
-    echo '# Check if the script is run with a URL argument' >> tempspider.sh
-    echo 'if [ $# -eq 1 ]; then' >> tempspider.sh
-    echo '    main "$1"' >> tempspider.sh
-    echo 'else' >> tempspider.sh
-    echo '    echo "Usage: $0 <URL>"' >> tempspider.sh
-    echo '    exit 1' >> tempspider.sh
-    echo 'fi' >> tempspider.sh
-    echo 'rm -rf tempspider.sh' >> tempspider.sh
-    chmod +x tempspider.sh
-    xterm -e "./tempspider.sh $target; read abc" & d3_re $target $option
-    
-    elif [ $spd_opt == 2 ]
-    then
-    echo
-    echo "Enter file location"
-    echo
-    read $url_list
-    echo '#!/bin/bash' >> tempmultispider.sh
-
-    echo '# Function to crawl a webpage and extract links' >> tempmultispider.sh
-    echo 'function crawl_page() {' >> tempmultispider.sh
-    echo '    local url="$1"' >> tempmultispider.sh
-    echo '    local depth="$2"' >> tempmultispider.sh
-    echo '    local indent="$3"' >> tempmultispider.sh
-    echo '    local hostname="$(echo "$url" | awk -F/ '\''{print $3}'\'')"' >> tempmultispider.sh
-
-    echo '    # Download the webpage' >> tempmultispider.sh
-    echo '    wget -q -O "$depth.html" "$url"' >> tempmultispider.sh
-
-    echo '    # Create sitemap file for this URL' >> tempmultispider.sh
-    echo '    local sitemap="${hostname}_sitemap.txt"' >> tempmultispider.sh
-    echo '    touch "$sitemap"' >> tempmultispider.sh
-
-    echo '    # Extract links from the webpage' >> tempmultispider.sh
-    echo '    grep -o '\''<a [^>]*href=["'\''"'\''"'\''][^"'\''"'\''"'\'']*["'\''"'\''"'\'']'\'' "$depth.html" | ' >> tempmultispider.sh
-    echo '    sed -e '\''s/^<a [^>]*href=["'\''"'\''"'\'']//'\'' -e '\''s/["'\''"'\''"'\'']$//'\'' | ' >> tempmultispider.sh
-    echo '    grep '\''^http'\'' | ' >> tempmultispider.sh
-    echo '    while read -r link; do' >> tempmultispider.sh
-    echo '	      echo "$indent$link"' >> tempmultispider.sh
-    echo '        echo "$indent$link" >> "$sitemap"  # Append the link to the sitemap file' >> tempmultispider.sh
-    echo '        if [ "$depth" -lt "$MAX_DEPTH" ]; then' >> tempmultispider.sh
-    echo '            crawl_page "$link" $((depth + 1)) "$indent  "' >> tempmultispider.sh
-    echo '        fi' >> tempmultispider.sh
-    echo '    done' >> tempmultispider.sh
-    echo '}' >> tempmultispider.sh
-
-    echo '# Main function' >> tempmultispider.sh
-    echo 'function main() {' >> tempmultispider.sh
-    echo '    local input_file="$1"' >> tempmultispider.sh
-    echo '    MAX_DEPTH=3  # Maximum depth to crawl' >> tempmultispider.sh
-
-    echo '    # Crawl each URL in the list' >> tempmultispider.sh
-    echo '    while IFS= read -r url; do' >> tempmultispider.sh
-    echo '        crawl_page "$url" 0 ""' >> tempmultispider.sh
-    echo '    done < "$input_file"' >> tempmultispider.sh
-
-    echo '    # Remove temporary files' >> tempmultispider.sh
-    echo '    rm *.html' >> tempmultispider.sh
-    echo '}' >> tempmultispider.sh
-
-    echo '# Check if the script is run with a file argument' >> tempmultispider.sh
-    echo 'if [ $# -eq 1 ]; then' >> tempmultispider.sh
-    echo '    main "$1"' >> tempmultispider.sh
-    echo 'else' >> tempmultispider.sh
-    echo '    echo "Usage: $0 <URLs_file>"' >> tempmultispider.sh
-    echo '    exit 1' >> tempmultispider.sh
-    echo 'fi' >> tempmultispider.sh
-    echo ' rm -rf tempmultispider.sh' >> tempmultispider.sh
-    chmod +x tempmultispider.sh
-    xterm -e "./tempmultispider.sh $url_list; read abc" & d3_re $target $option
-    
-    else 
-    xterm -e "echo 'Please Choose Correct Option';read abc" & d3_re $target $option
-    fi
-
-
-elif [ $option == 99 ]
-then
-toilet "See You 
-Again Soon"|lolcat & sleep 2;clear
-
-elif [ $option == 0 ]
-then
-echo "Enter New Target"
-echo
-read target
-echo
-echo "New Target is : $target"
-echo
-D3m0n_4U $target
-
-
-else
-xterm -e "echo 'Please Choose Correct Option';read abc" & D3m0n_4U $target
-fi
-
