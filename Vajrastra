@@ -26,7 +26,7 @@ if [ -z "$1" ]
 then
 	echo "Please define target : ./vajrastra <Target> "
 else
-
+	target=$1
 	# Function for home banner
 	function nxtcmnd () 
 	{
@@ -974,7 +974,6 @@ else
 		echo
 		echo "Here We go"
 		echo
-		target=$1
 		echo "Target is : $target" & sleep 1; clear
 		echo
 		option="999"
