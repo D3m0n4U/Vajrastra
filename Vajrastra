@@ -14,6 +14,11 @@
 ###################THATS IT#####################
 ################################################
 
+#Array for required tools
+required_tools=("toilet" "lolcat" "sublist3r" "theHarvester" "dirb")
+
+#Array to store missing tools
+missing_tools=()
 
 # Error control
 
@@ -947,19 +952,39 @@ else
 			D3m0n_4U
 		fi
 	}
-	
-	# Start of Tool
-	clear
-	toilet  "Welome
-	D3m0n4U"|lolcat
-	echo
-	echo
-	echo "Here We go"
-	echo
-	target=$1
-	echo "Target is : $target" & sleep 1; clear
-	echo
-	option="999"
-	nxtcmnd
 
+	# Function to check command existence
+	check_command()
+	{
+		command -v $1 >/dev/null 2>&1 || missing_tools+=("$1")
+	}
+
+	#Tool installation Checker
+	for tool in "${required_tools[@]}"; do
+		check_command "$tool"
+	done
+
+	if [ ${#missing_tools[@]} -eq 0 ]; 
+	then
+		# Start of Tool
+		clear
+		toilet  "Welome
+		D3m0n4U"|lolcat
+		echo
+		echo
+		echo "Here We go"
+		echo
+		target=$1
+		echo "Target is : $target" & sleep 1; clear
+		echo
+		option="999"
+		nxtcmnd
+
+	else
+		echo "The Following tools are missing:"
+		for missing_tool in "${missing_tools[@]}";
+		do
+			echo "$missing_tool"
+		done
+	fi
 fi
