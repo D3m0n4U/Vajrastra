@@ -9,7 +9,6 @@
 #sublist3r
 #theHarvester
 #dirb
-#Firefox
 
 ################################################
 ###################THATS IT#####################
@@ -447,235 +446,235 @@ else
 		else
 			if [ $ggl_opt == 1 ]
 			then
-				firefox "https://www.google.com/search?q=site:$target+intitle:index.of" & nxtcmnd
+				xdg-open "https://www.google.com/search?q=site:$target+intitle:index.of" & nxtcmnd
 				
 			elif [ $ggl_opt == 2 ]
 			then
-				firefox "https://www.google.com/search?q=site:$target%20ext:xml%20|%20ext:conf%20|%20ext:cnf%20|%20ext:reg%20|%20ext:inf%20|%20ext:rdp%20|%20ext:cfg%20|%20ext:txt%20|%20ext:ora%20|%20ext:ini"  & nxtcmnd
+				xdg-open "https://www.google.com/search?q=site:$target%20ext:xml%20|%20ext:conf%20|%20ext:cnf%20|%20ext:reg%20|%20ext:inf%20|%20ext:rdp%20|%20ext:cfg%20|%20ext:txt%20|%20ext:ora%20|%20ext:ini"  & nxtcmnd
 			
 			elif [ $ggl_opt == 3 ]
 			then
-				firefox "https://www.google.com/search?q=site:$target%20ext:sql%20|%20ext:dbf%20|%20ext:mdb" & nxtcmnd
+				xdg-open "https://www.google.com/search?q=site:$target%20ext:sql%20|%20ext:dbf%20|%20ext:mdb" & nxtcmnd
 			
 			elif [ $ggl_opt == 4 ]
 			then
-				firefox "https://www.google.com/search?q=site:$target%20inurl:wp-%20|%20inurl:wp-content%20|%20inurl:plugins%20|%20inurl:uploads%20|%20inurl:themes%20|%20inurl:download" & nxtcmnd
+				xdg-open "https://www.google.com/search?q=site:$target%20inurl:wp-%20|%20inurl:wp-content%20|%20inurl:plugins%20|%20inurl:uploads%20|%20inurl:themes%20|%20inurl:download" & nxtcmnd
 			
 			elif [ $ggl_opt == 5 ]
 			then
-				firefox "https://www.google.com/search?q=site:$target%20ext:log"  & nxtcmnd
+				xdg-open "https://www.google.com/search?q=site:$target%20ext:log"  & nxtcmnd
 			
 			elif [ $ggl_opt == 6 ]
 			then
-				firefox "https://www.google.com/search?q=site:$target%20ext:bkf%20|%20ext:bkp%20|%20ext:bak%20|%20ext:old%20|%20ext:backup"  & nxtcmnd
+				xdg-open "https://www.google.com/search?q=site:$target%20ext:bkf%20|%20ext:bkp%20|%20ext:bak%20|%20ext:old%20|%20ext:backup"  & nxtcmnd
 			
 			elif [ $ggl_opt == 7 ]
 			then
-				firefox "https://www.google.com/search?q=site:$target%20inurl:login%20|%20inurl:signin%20|%20intitle:Login%20|%20intitle:%20signin%20|%20inurl:auth" & nxtcmnd
+				xdg-open "https://www.google.com/search?q=site:$target%20inurl:login%20|%20inurl:signin%20|%20intitle:Login%20|%20intitle:%20signin%20|%20inurl:auth" & nxtcmnd
 			
 			elif [ $ggl_opt == 8 ]
 			then
-				firefox "https://www.google.com/search?q=site:$target%20intext:%22sql%20syntax%20near%22%20|%20intext:%22syntax%20error%20has%20occurred%22%20|%20intext:%22incorrect%20syntax%20near%22%20|%20intext:%22unexpected%20end%20of%20SQL%20command%22%20|%20intext:%22Warning:%20mysql_connect()%22%20|%20intext:%22Warning:%20mysql_query()%22%20|%20intext:%22Warning:%20pg_connect()%22" & nxtcmnd
+				xdg-open "https://www.google.com/search?q=site:$target%20intext:%22sql%20syntax%20near%22%20|%20intext:%22syntax%20error%20has%20occurred%22%20|%20intext:%22incorrect%20syntax%20near%22%20|%20intext:%22unexpected%20end%20of%20SQL%20command%22%20|%20intext:%22Warning:%20mysql_connect()%22%20|%20intext:%22Warning:%20mysql_query()%22%20|%20intext:%22Warning:%20pg_connect()%22" & nxtcmnd
 			
 			elif [ $ggl_opt == 9 ]
 			then
-				firefox "https://www.google.com/search?q=site:$target%20filetype:config%20%22apache%22"  & nxtcmnd
+				xdg-open "https://www.google.com/search?q=site:$target%20filetype:config%20%22apache%22"  & nxtcmnd
 			
 			elif [ $ggl_opt == 10 ]
 			then 
-				firefox "https://www.google.com/search?q=$target/robots.txt" & nxtcmnd
+				xdg-open "https://www.google.com/search?q=$target/robots.txt" & nxtcmnd
 			
 			elif [ $ggl_opt == 11 ]
 			then
-				firefox "https://domaineye.com/similar/$target"  & nxtcmnd
+				xdg-open "https://domaineye.com/similar/$target"  & nxtcmnd
 			
 			elif [ $ggl_opt == 12 ]
 			then
-				firefox "https://www.google.com/search?q=site:$target%20ext:doc%20|%20ext:docx%20|%20ext:odt%20|%20ext:pdf%20|%20ext:rtf%20|%20ext:sxw%20|%20ext:psw%20|%20ext:ppt%20|%20ext:pptx%20|%20ext:pps%20|%20ext:csv" & nxtcmnd
+				xdg-open "https://www.google.com/search?q=site:$target%20ext:doc%20|%20ext:docx%20|%20ext:odt%20|%20ext:pdf%20|%20ext:rtf%20|%20ext:sxw%20|%20ext:psw%20|%20ext:ppt%20|%20ext:pptx%20|%20ext:pps%20|%20ext:csv" & nxtcmnd
 			
 			elif [ $ggl_opt == 13 ]
 			then
-				firefox "https://www.google.com/search?q=site:$target%20ext:php%20intitle:phpinfo%20%22published%20by%20the%20PHP%20Group%22" & nxtcmnd
+				xdg-open "https://www.google.com/search?q=site:$target%20ext:php%20intitle:phpinfo%20%22published%20by%20the%20PHP%20Group%22" & nxtcmnd
 			
 			elif [ $ggl_opt == 14 ]
 			then
-				firefox "https://www.google.com/search?q=site:$target%20%20inurl:shell%20|%20inurl:backdoor%20|%20inurl:wso%20|%20inurl:cmd%20|%20shadow%20|%20passwd%20|%20boot.ini%20|%20inurl:backdoor" & nxtcmnd
+				xdg-open "https://www.google.com/search?q=site:$target%20%20inurl:shell%20|%20inurl:backdoor%20|%20inurl:wso%20|%20inurl:cmd%20|%20shadow%20|%20passwd%20|%20boot.ini%20|%20inurl:backdoor" & nxtcmnd
 			
 			elif [ $ggl_opt == 15 ]
 			then
-				firefox "https://www.google.com/search?q=site:$target%20%20inurl:readme%20|%20inurl:license%20|%20inurl:install%20|%20inurl:setup%20|%20inurl:config" & nxtcmnd
+				xdg-open "https://www.google.com/search?q=site:$target%20%20inurl:readme%20|%20inurl:license%20|%20inurl:install%20|%20inurl:setup%20|%20inurl:config" & nxtcmnd
 			
 			elif [ $ggl_opt == 16 ]
 			then
-				firefox "https://www.google.com/search?q=site:$target%20inurl:redir%20|%20inurl:url%20|%20inurl:redirect%20|%20inurl:return%20|%20inurl:src=http%20|%20inurl:r=http" & nxtcmnd
+				xdg-open "https://www.google.com/search?q=site:$target%20inurl:redir%20|%20inurl:url%20|%20inurl:redirect%20|%20inurl:return%20|%20inurl:src=http%20|%20inurl:r=http" & nxtcmnd
 			
 			elif [ $ggl_opt == 17 ]
 			then
-				firefox "https://www.google.com/search?q=site:$target%20ext:action%20|%20ext:struts%20|%20ext:do" & nxtcmnd
+				xdg-open "https://www.google.com/search?q=site:$target%20ext:action%20|%20ext:struts%20|%20ext:do" & nxtcmnd
 			
 			elif [ $ggl_opt == 18 ]
 			then
-				firefox "https://www.google.com/search?q=site%3Ahttp%3A%2F%2Fideone.com+|+site%3Ahttp%3A%2F%2Fcodebeautify.org+|+site%3Ahttp%3A%2F%2Fcodeshare.io+|+site%3Ahttp%3A%2F%2Fcodepen.io+|+site%3Ahttp%3A%2F%2Frepl.it+|+site%3Ahttp%3A%2F%2Fjustpaste.it+|+site%3Ahttp%3A%2F%2Fpastebin.com+|+site%3Ahttp%3A%2F%2Fjsfiddle.net+|+site%3Ahttp%3A%2F%2Ftrello.com+|+site%3A*.atlassian.net+|+site%3Abitbucket.org+%22%$target%22" & nxtcmnd
+				xdg-open "https://www.google.com/search?q=site%3Ahttp%3A%2F%2Fideone.com+|+site%3Ahttp%3A%2F%2Fcodebeautify.org+|+site%3Ahttp%3A%2F%2Fcodeshare.io+|+site%3Ahttp%3A%2F%2Fcodepen.io+|+site%3Ahttp%3A%2F%2Frepl.it+|+site%3Ahttp%3A%2F%2Fjustpaste.it+|+site%3Ahttp%3A%2F%2Fpastebin.com+|+site%3Ahttp%3A%2F%2Fjsfiddle.net+|+site%3Ahttp%3A%2F%2Ftrello.com+|+site%3A*.atlassian.net+|+site%3Abitbucket.org+%22%$target%22" & nxtcmnd
 			
 			elif [ $ggl_opt == 19 ]
 			then
-				firefox "https://securityheaders.com/?q=$target&followRedirects=on" & nxtcmnd
+				xdg-open "https://securityheaders.com/?q=$target&followRedirects=on" & nxtcmnd
 			
 			elif [ $ggl_opt == 20 ]
 			then
-				firefox "https://www.google.com/search?q=inurl:gitlab%20$target" & nxtcmnd
+				xdg-open "https://www.google.com/search?q=inurl:gitlab%20$target" & nxtcmnd
 			
 			elif [ $ggl_opt == 21 ]
 			then
-				firefox "https://www.google.com/search?q=site:pastebin.com%20$target" & nxtcmnd
+				xdg-open "https://www.google.com/search?q=site:pastebin.com%20$target" & nxtcmnd
 			
 			elif [ $ggl_opt == 22 ]
 			then
-				firefox "https://www.google.com/search?q=site:linkedin.com%20employees%20$target" & nxtcmnd
+				xdg-open "https://www.google.com/search?q=site:linkedin.com%20employees%20$target" & nxtcmnd
 			
 			elif [ $ggl_opt == 23 ]
 			then
-				firefox "https://www.google.com/search?q=site:$target%20inurl:%22/phpinfo.php%22%20|%20inurl:%22.htaccess%22" & nxtcmnd
+				xdg-open "https://www.google.com/search?q=site:$target%20inurl:%22/phpinfo.php%22%20|%20inurl:%22.htaccess%22" & nxtcmnd
 				
 			elif [ $ggl_opt == 24 ]
 			then
-				firefox "https://www.google.com/search?q=site:*.$target" & nxtcmnd
+				xdg-open "https://www.google.com/search?q=site:*.$target" & nxtcmnd
 			
 			elif [ $ggl_opt == 25 ]
 			then
-				firefox "https://www.google.com/search?q=site:*.*.$target" & nxtcmnd
+				xdg-open "https://www.google.com/search?q=site:*.*.$target" & nxtcmnd
 				
 			elif [ $ggl_opt == 26 ]
 			then
-				firefox "https://www.google.com/search?q=site:$target%20inurl:wp-content%20|%20inurl:wp-includes" & nxtcmnd
+				xdg-open "https://www.google.com/search?q=site:$target%20inurl:wp-content%20|%20inurl:wp-includes" & nxtcmnd
 			
 			elif [ $ggl_opt == 27 ]
 			then
-				firefox "https://www.google.com/search?q=site%3Aatlassian.net+|+site%3Abitbucket.org+%22$target%22" & nxtcmnd
+				xdg-open "https://www.google.com/search?q=site%3Aatlassian.net+|+site%3Abitbucket.org+%22$target%22" & nxtcmnd
 			
 			elif [ $ggl_opt == 28 ]	
 			then
-				firefox "https://community.riskiq.com/search/$target" & nxtcmnd
+				xdg-open "https://community.riskiq.com/search/$target" & nxtcmnd
 			
 			elif [ $ggl_opt == 29 ]
 			then
-				firefox "https://www.google.com/search?q=site:stackoverflow.com%20%22$target%22" & nxtcmnd
+				xdg-open "https://www.google.com/search?q=site:stackoverflow.com%20%22$target%22" & nxtcmnd
 			
 			elif [ $ggl_opt == 30 ]
 			then
-				firefox "http://wwwb-dedup.us.archive.org:8083/cdx/search?url=$target/&matchType=domain&collapse=digest&output=text&fl=original,timestamp&filter=urlkey:.*wp[-].*&limit=1000000&xx=" & nxtcmnd
+				xdg-open "http://wwwb-dedup.us.archive.org:8083/cdx/search?url=$target/&matchType=domain&collapse=digest&output=text&fl=original,timestamp&filter=urlkey:.*wp[-].*&limit=1000000&xx=" & nxtcmnd
 			
 			elif [ $ggl_opt == 31 ]
 			then
-				firefox "https://github.com/search?q=%22*.$target%22" & nxtcmnd
+				xdg-open "https://github.com/search?q=%22*.$target%22" & nxtcmnd
 			
 			elif [ $ggl_opt == 32 ]
 			then
-				firefox "https://www.openbugbounty.org/search/?search=$target" & nxtcmnd
+				xdg-open "https://www.openbugbounty.org/search/?search=$target" & nxtcmnd
 			
 			elif [ $ggl_opt == 33 ]
 			then
-				firefox "https://www.reddit.com/search/?q=$target" & nxtcmnd
+				xdg-open "https://www.reddit.com/search/?q=$target" & nxtcmnd
 			
 			elif [ $ggl_opt == 34 ]
 			then
-				firefox "https://www.google.com/search?q=$target/crossdomain.xml" & nxtcmnd
+				xdg-open "https://www.google.com/search?q=$target/crossdomain.xml" & nxtcmnd
 			
 			elif [ $ggl_opt == 35 ]
 			then
-				firefox "https://threatcrowd.org/domain.php?domain=$target" & nxtcmnd
+				xdg-open "https://threatcrowd.org/domain.php?domain=$target" & nxtcmnd
 			
 			elif [ $ggl_opt == 36 ]
 			then
-				firefox "https://www.google.com/search?q=inurl:%22/.git%20%22$target%20-github" & nxtcmnd
+				xdg-open "https://www.google.com/search?q=inurl:%22/.git%20%22$target%20-github" & nxtcmnd
 			
 			elif [ $ggl_opt == 37 ]
 			then
-				firefox "https://www.youtube.com/results?search_query=$target" & nxtcmnd
+				xdg-open "https://www.youtube.com/results?search_query=$target" & nxtcmnd
 			
 			elif [ $ggl_opt == 38 ]
 			then
-				firefox "https://www.google.com/search?q=site:digitaloceanspaces.com%20%22$target%22" & nxtcmnd
+				xdg-open "https://www.google.com/search?q=site:digitaloceanspaces.com%20%22$target%22" & nxtcmnd
 			
 			elif [ $ggl_opt == 39 ]
 			then
-				firefox "https://www.google.com/search?q=inurl$target%20ext:swf" & nxtcmnd
+				xdg-open "https://www.google.com/search?q=inurl$target%20ext:swf" & nxtcmnd
 			
 			elif [ $ggl_opt == 40 ]
 			then
-				firefox "https://yandex.com/search/?text=site%3A$target++mime%3Aswf&lr=112509" & nxtcmnd
+				xdg-open "https://yandex.com/search/?text=site%3A$target++mime%3Aswf&lr=112509" & nxtcmnd
 			
 			elif [ $ggl_opt == 41 ]
 			then
-				firefox "https://web.archive.org/cdx/search?url=$target/&matchType=domain&collapse=urlkey&output=text&fl=original&filter=urlkey:.*swf&limit=100000" & nxtcmnd
+				xdg-open "https://web.archive.org/cdx/search?url=$target/&matchType=domain&collapse=urlkey&output=text&fl=original&filter=urlkey:.*swf&limit=100000" & nxtcmnd
 			
 			elif [ $ggl_opt == 42 ]
 			then
-				firefox "https://web.archive.org/cdx/search?url=$target/&matchType=domain&collapse=urlkey&output=text&fl=original&filter=mimetype:application/x-shockwave-flash&limit=100000" & nxtcmnd
+				xdg-open "https://web.archive.org/cdx/search?url=$target/&matchType=domain&collapse=urlkey&output=text&fl=original&filter=mimetype:application/x-shockwave-flash&limit=100000" & nxtcmnd
 			
 			elif [ $ggl_opt == 43 ]
 			then
-				firefox "https://web.archive.org/web/*/$target/*" & nxtcmnd
+				xdg-open "https://web.archive.org/web/*/$target/*" & nxtcmnd
 			
 			elif [ $ggl_opt == 44 ]
 			then
-				firefox "https://viewdns.info/reverseip/?host=$target&t=1" & nxtcmnd
+				xdg-open "https://viewdns.info/reverseip/?host=$target&t=1" & nxtcmnd
 			
 			elif [ $ggl_opt == 45 ]
 			then
-				firefox "https://www.google.com/search?q=intitle:traefik+inurl:8080/dashboard%22$target%22" & nxtcmnd
+				xdg-open "https://www.google.com/search?q=intitle:traefik+inurl:8080/dashboard%22$target%22" & nxtcmnd
 			
 			elif [ $ggl_opt == 46 ]
 			then
-				firefox "https://cse.google.com/cse?cx=002972716746423218710:veac6ui3rio#gsc.tab=0&gsc.q=$target" & nxtcmnd
+				xdg-open "https://cse.google.com/cse?cx=002972716746423218710:veac6ui3rio#gsc.tab=0&gsc.q=$target" & nxtcmnd
 			
 			elif [ $ggl_opt == 47 ]
 			then
-				firefox "https://www.google.com/search?q=site:.s3.amazonaws.com%20%22$target%22" & nxtcmnd
+				xdg-open "https://www.google.com/search?q=site:.s3.amazonaws.com%20%22$target%22" & nxtcmnd
 			
 			elif [ $ggl_opt == 48 ]
 			then
-				firefox "https://publicwww.com/websites/%22$target%22/" & nxtcmnd
+				xdg-open "https://publicwww.com/websites/%22$target%22/" & nxtcmnd
 			
 			elif [ $ggl_opt == 49 ]
 			then
-				firefox "https://censys.io/ipv4?q=$target" & nxtcmnd
+				xdg-open "https://censys.io/ipv4?q=$target" & nxtcmnd
 			
 			elif [ $ggl_opt == 50 ]	
 			then
-				firefox "https://censys.io/domain?q=$target" & nxtcmnd
+				xdg-open "https://censys.io/domain?q=$target" & nxtcmnd
 			
 			elif [ $ggl_opt == 51 ]
 			then
-				firefox "https://censys.io/certificates?q=$target" & nxtcmnd
+				xdg-open "https://censys.io/certificates?q=$target" & nxtcmnd
 			
 			elif [ $ggl_opt == 52 ]
 			then
-				firefox "https://www.shodan.io/search?query=$target" & nxtcmnd
+				xdg-open "https://www.shodan.io/search?query=$target" & nxtcmnd
 			
 			elif [ $ggl_opt == 53 ]
 			then
-				firefox "https://www.google.com/search?q=.sharepoint.com/_vti_bin/webpartpages/asmx%20-docs%20-msdn%20-mdsec%20site:$target" & nxtcmnd
+				xdg-open "https://www.google.com/search?q=.sharepoint.com/_vti_bin/webpartpages/asmx%20-docs%20-msdn%20-mdsec%20site:$target" & nxtcmnd
 			
 			elif [ $ggl_opt == 54 ]
 			then
-				firefox "https://www.google.com/search?q=site:$target%20filetype:wsdl%20|%20filetype:WSDL%20|%20ext:svc%20|%20inurl:wsdl%20|%20Filetype:%20?wsdl%20|%20inurl:asmx?wsdl%20|%20inurl:jws?wsdl%20|%20intitle:_vti_bin/sites.asmx?wsdl%20|%20inurl:_vti_bin/sites.asmx?wsdl" & nxtcmnd
+				xdg-open "https://www.google.com/search?q=site:$target%20filetype:wsdl%20|%20filetype:WSDL%20|%20ext:svc%20|%20inurl:wsdl%20|%20Filetype:%20?wsdl%20|%20inurl:asmx?wsdl%20|%20inurl:jws?wsdl%20|%20intitle:_vti_bin/sites.asmx?wsdl%20|%20inurl:_vti_bin/sites.asmx?wsdl" & nxtcmnd
 			
 			elif [ $ggl_opt == 55 ]
 			then
-				firefox "https://gist.github.com/search?q=*.%22$target%22" & nxtcmnd
+				xdg-open "https://gist.github.com/search?q=*.%22$target%22" & nxtcmnd
 			
 			elif [ $ggl_opt == 56 ]
 			then
-				firefox "https://crt.sh/?q=$target" & nxtcmnd
+				xdg-open "https://crt.sh/?q=$target" & nxtcmnd
 			
 			elif [ $ggl_opt == 57 ]
 			then
-				firefox "https://www.google.com/search?q=site:throwbin.io%20$target" & nxtcmnd
+				xdg-open "https://www.google.com/search?q=site:throwbin.io%20$target" & nxtcmnd
 				
 			elif [ $ggl_opt == 58 ]
 			then
-				firefox "https://whatcms.org/?s=$target" & nxtcmnd
+				xdg-open "https://whatcms.org/?s=$target" & nxtcmnd
 				
 			elif [ $ggl_opt == 0 ]
 			then
