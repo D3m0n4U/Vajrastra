@@ -1,3 +1,4 @@
+
 #!/bin/bash
 
 #################################################
@@ -838,7 +839,7 @@ else
 	{
 		clear
 		toilet "See You 
-		Again Soon"|lolcat & sleep 1;clear
+Again Soon"|lolcat & sleep 1;clear
 	}
 	
 	function chng () 
@@ -956,6 +957,7 @@ else
 	# Function to check command existence
 	check_command()
 	{
+		echo "Checking of missing tools .... "
 		command -v $1 >/dev/null 2>&1 || missing_tools+=("$1")
 	}
 
@@ -969,7 +971,7 @@ else
 		# Start of Tool
 		clear
 		toilet  "Welome
-		D3m0n4U"|lolcat
+D3m0n4U"|lolcat
 		echo
 		echo
 		echo "Here We go"
